@@ -51,3 +51,60 @@
     @apply w-6 h-6 cursor-pointer;
   }
 }
+
+
+@layer components {
+  .df,
+  .dfc,
+  .dc {
+    @apply flex gap-2;
+  }
+
+  .df, .dc {
+    @apply items-center;
+  }
+
+  .dfc {
+    @apply flex-col;
+  }
+
+  .dc {
+    @apply justify-center;
+  }
+
+  .scroll-y {
+    @apply flex-1 overflow-y-auto;
+  }
+
+  .no-scroll-bar::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+  }
+
+  .mini-scroll-bar::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+  }
+
+
+  /* input number hide arrows - Chrome, Safari, Edge, Opera */
+  .no-number-arrows::-webkit-outer-spin-button,
+  .no-number-arrows::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* input number hide arrows - Firefox */
+  .no-number-arrows {
+    -moz-appearance: textfield;
+  }
+
+  .grid-col-full {
+    grid-column: 1 / -1;
+  }
+}
+
+.auth-bg {
+  background: url(./assets/img/img2.jpg) no-repeat center/cover;
+  filter: grayscale(.3);
+}

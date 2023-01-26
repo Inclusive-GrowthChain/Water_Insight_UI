@@ -1,8 +1,17 @@
+import { lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
+
+const Signup = lazy(() => import("./comp/Auth/Signup"))
+const Login = lazy(() => import("./comp/Auth/Login"))
+
 function App() {
   return (
-    <div>
-      <h1 className=" text-center text-red-400 text-5xl">Hi</h1>
-    </div>
+    <Suspense fallback={"looding..."}>
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
+      </Routes>
+    </Suspense>
   )
 }
 
