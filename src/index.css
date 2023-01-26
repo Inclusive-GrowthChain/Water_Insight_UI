@@ -37,10 +37,10 @@
   }
 
   select {
-    @apply w-full pl-4 pr-8 py-2 border appearance-none rounded focus:outline-none
+    @apply w-full pl-4 pr-6 py-2 border appearance-none rounded focus:outline-none
     bg-no-repeat border-gray-300 bg-[url('./assets/img/dropdown-arrow.png')];
-    background-position: 98%;
-    background-size: 24px;
+    background-position: 94%;
+    background-size: 16px;
   }
 
   button {
@@ -102,6 +102,14 @@
   .grid-col-full {
     grid-column: 1 / -1;
   }
+
+  /* css loader */
+  .loader {
+    @apply 
+      w-10 h-10 border-4 animate-spin rounded-full 
+      border-slate-100 border-t-slate-900
+    ;
+  }  
 }
 
 .auth-bg {

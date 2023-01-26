@@ -1,8 +1,13 @@
-import { useState } from "react"
+import { useState } from "react";
+import Template from './Template';
 
 function Input({ name = "" }) {
   return (
-    <input type="text" placeholder={name} />
+    <input
+      type="text"
+      placeholder={name}
+      className="focus-within:border-slate-900"
+    />
   )
 }
 
@@ -10,7 +15,7 @@ function Signup() {
   const [type, setType] = useState("")
 
   return (
-    <div className='auth-bg dc flex-col gap-0 h-screen'>
+    <Template>
       <div className='p-6 bg-white rounded-xl shadow-lg'>
         <h1 className="mb-4 text-2xl font-medium text-center">Sign up</h1>
 
@@ -43,7 +48,7 @@ function Signup() {
           Sign up
         </button>
       </div>
-    </div>
+    </Template>
   )
 }
 
