@@ -110,9 +110,58 @@
       border-slate-100 border-t-slate-900
     ;
   }  
+  
+  /* DropDown */
+  .DropDownBtn {
+    @apply 
+      w-full focus:outline-0
+      py-1 px-2 text-sm 2xl:text-[15px] rounded 
+    ;
+  }
+
+  .DropDownBtn:not(.active){
+    @apply 
+      hover:bg-slate-100 hover:text-slate-900 
+      focus:bg-slate-100 focus:text-slate-900 
+      active:bg-slate-100 active:text-slate-900 
+    ;
+  }
+
+  .DropDownBox {
+    @apply 
+      gap-0.5 p-2 min-w-[110px] z-10 focus:outline-0 shadow-spread
+      rounded bg-white border border-white
+    ;
+  }
+
+  .DropDownArrow {
+    @apply bg-inherit w-4 h-4 rotate-45 -z-1 border border-inherit;
+  }
 }
 
 .auth-bg {
   background: url(./assets/img/img2.jpg) no-repeat center/cover;
   filter: grayscale(.3);
+}
+
+.app-wrapper {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: 
+    'nav nav'
+    'sidebar main'
+  ;
+}
+
+.app-wrapper > nav {
+  grid-area: nav;
+}
+
+.app-wrapper > aside {
+  grid-area: sidebar;
+}
+
+.app-wrapper > section {
+  grid-area: main;
 }
