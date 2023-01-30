@@ -8,6 +8,7 @@ const Login = lazy(() => import("./comp/Auth/Login"))
 const TemplateSetting = lazy(() => import("./comp/Template/Setting"))
 const TemplateSupport = lazy(() => import("./comp/Template/Support"))
 
+const MyContribution = lazy(() => import("./comp/Contributor/MyContribution"))
 const Contributor = lazy(() => import("./comp/Contributor"))
 
 const Reciever = lazy(() => import("./comp/Reciever"))
@@ -20,6 +21,7 @@ function App() {
         <Route path='signup' element={<Signup />} />
 
         <Route path='contributor' element={<Contributor />}>
+          <Route path='my-contribution' element={<MyContribution />} />
           <Route path='support' element={<TemplateSupport />} />
           <Route path='setting' element={<TemplateSetting />} />
         </Route>

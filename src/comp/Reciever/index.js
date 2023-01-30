@@ -17,7 +17,7 @@ const list = [
 
 function Reciever() {
   return (
-    <AppWrapper list={list} />
+    <AppWrapper role="reciever" list={list} />
   )
 }
 

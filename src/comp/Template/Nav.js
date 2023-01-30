@@ -2,12 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import { DropDownWrapper } from '../UIComp/DropDown';
 import { ReactComponent as User } from '../../assets/svg/users/user1.svg';
 
-function Nav() {
+function Nav({ role = "" }) {
   const navigate = useNavigate()
 
   const onClk = val => {
     if (val === "Profile") {
-      navigate(`/setting`)
+      navigate(`${role}/setting`)
     } else if (val === 'Log out') {
       navigate("/")
     }

@@ -13,7 +13,7 @@ const list = [
   {
     icon: <User className="w-5 h-5 fill-white" />,
     title: "My Contribution",
-    to: ''
+    to: 'my-contribution'
   },
   {
     title: "Support",
@@ -29,7 +29,7 @@ const list = [
 
 function Contributor() {
   return (
-    <AppWrapper list={list} />
+    <AppWrapper role="contributor" list={list} />
   )
 }
 
