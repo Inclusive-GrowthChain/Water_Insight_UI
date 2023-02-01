@@ -14,7 +14,7 @@ function Nav({ role = "" }) {
   }
 
   return (
-    <nav className='df gap-8 px-6 py-2 bg-blue-600 text-white'>
+    <nav className='df gap-8 px-6 py-2 bg-[#004e7c] text-white'>
       <div>logo</div>
 
       <DropDownWrapper

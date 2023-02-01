@@ -63,7 +63,7 @@ function Login() {
       </div>
 
       <div className='px-8 py-3 text-sm bg-white rounded-b-xl shadow-md'>
-        Don't have account, <Link to="/signup" className='text-blue-500 hover:text-blue-700'>Sign up</Link>
+        Don't have account, <Link to="/signup" className='text-[#0071b0] hover:text-[#0d87c9]'>Sign up</Link>
       </div>
     </Template>
   )

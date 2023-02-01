@@ -54,13 +54,13 @@ function Settings() {
         <div className='dc gap-6 font-semibold text-lg my-4'>
           <p
             onClick={() => setShow("profile")}
-            className={`${show === "profile" ? "text-blue-900" : ""} cursor-pointer`}
+            className={`${show === "profile" ? "text-[#0071b0]" : ""} cursor-pointer`}
           >
             Profile
           </p>
           <p
             onClick={() => setShow("password")}
-            className={`${show === "password" ? "text-blue-900" : ""} cursor-pointer`}
+            className={`${show === "password" ? "text-[#0071b0]" : ""} cursor-pointer`}
           >
             Password Reset
           </p>
@@ -100,7 +100,7 @@ function Settings() {
             {
               !edit &&
               <button
-                className='block mx-auto text-white bg-blue-600 hover:bg-blue-800'
+                className='block mx-auto text-white bg-[#0071b0] hover:bg-[#0d87c9]'
                 onClick={updateEdit}
               >
                 Edit
@@ -111,14 +111,14 @@ function Settings() {
               edit &&
               <div className='dc gap-4'>
                 <button
-                  className='block text-white bg-blue-600 hover:bg-blue-800'
+                  className='block text-white bg-[#0071b0] hover:bg-[#0d87c9]'
                   onClick={updateEdit}
                 >
                   Cancel
                 </button>
 
                 <button
-                  className='block text-white bg-blue-600 hover:bg-blue-800'
+                  className='block text-white bg-[#0071b0] hover:bg-[#0d87c9]'
                   onClick={updateEdit}
                 >
                   Update
@@ -146,7 +146,7 @@ function Settings() {
             />
 
             <button
-              className='block mx-auto text-white bg-blue-600 hover:bg-blue-800'
+              className='block mx-auto text-white bg-[#0071b0] hover:bg-[#0d87c9]'
             >
               Update
             </button>

@@ -8,7 +8,7 @@ const list = [
   {
     icon: <Test className="stroke-white" />,
     title: "Start a Test",
-    to: ''
+    to: 'start-test'
   },
   {
     icon: <User className="w-5 h-5 fill-white" />,
