@@ -210,9 +210,6 @@ function MyContribution() {
     <section className='dfc h-full overflow-y-hidden'>
       <div className='df gap-4 px-4 py-4'>
         <h1 className='text-2xl'>My Contributions</h1>
-        {/* <button className='ml-auto text-white bg-blue-600 hover:bg-blue-800'>
-          Start a test
-        </button> */}
       </div>
 
       <div className='scroll-y overflow-x-auto mx-4 mb-2 bg-white'>

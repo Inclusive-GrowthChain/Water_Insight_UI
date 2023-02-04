@@ -1,6 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { DropDownWrapper } from '../UIComp/DropDown';
 import { ReactComponent as User } from '../../assets/svg/users/user1.svg';
+import logo from '../../assets/img/logo.png';
 
 function Nav({ role = "" }) {
   const navigate = useNavigate()
@@ -14,8 +15,11 @@ function Nav({ role = "" }) {
   }
 
   return (
-    <nav className='df gap-8 px-6 py-2 bg-[#004e7c] text-white'>
-      <div>logo</div>
+    <nav className='df gap-8 px-4 py-2 bg-[#004e7c] text-white'>
+      <Link to={role} className="df text-white">
+        <img src={logo} alt="" className='w-8' />
+        <p>Inclusive Growth Chain</p>
+      </Link>
 
       <DropDownWrapper
         list={["Profile", "Log out"]}

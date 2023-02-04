@@ -137,6 +137,19 @@
   .DropDownArrow {
     @apply bg-inherit w-4 h-4 rotate-45 -z-1 border border-inherit;
   }
+
+  /* Modal */
+  .modal-wrapper {
+    @apply relative z-50;
+  }
+
+  .modal-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-25;
+  }
+    
+  .modal-content {
+    @apply p-4 lg:p-6 rounded-2xl bg-white shadow-xl transition-all;
+  }  
 }
 
 .auth-bg {
