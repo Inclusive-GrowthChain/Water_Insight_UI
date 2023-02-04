@@ -16,7 +16,7 @@ function Nav({ role = "" }) {
 
   return (
     <nav className='df gap-8 px-4 py-2 bg-[#004e7c] text-white'>
-      <Link to={role} className="df text-white">
+      <Link to={`/${role}`} className="df text-white">
         <img src={logo} alt="" className='w-8' />
         <p>Inclusive Growth Chain</p>
       </Link>

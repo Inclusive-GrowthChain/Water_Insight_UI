@@ -12,6 +12,7 @@ const MyContribution = lazy(() => import("./comp/Contributor/MyContribution"))
 const StartTest = lazy(() => import("./comp/Contributor/StartTest"))
 const Contributor = lazy(() => import("./comp/Contributor"))
 
+const RecieverDashBoard = lazy(() => import("./comp/Reciever/DashBoard"))
 const Reciever = lazy(() => import("./comp/Reciever"))
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         </Route>
 
         <Route path='reciever' element={<Reciever />}>
+          <Route path='dashboard' element={<RecieverDashBoard />} />
           <Route path='support' element={<TemplateSupport />} />
           <Route path='setting' element={<TemplateSetting />} />
         </Route>
