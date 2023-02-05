@@ -100,7 +100,7 @@ function Settings() {
             {
               !edit &&
               <button
-                className='block mx-auto text-white bg-[#0071b0] hover:bg-[#0d87c9]'
+                className='block mx-auto theme-btn'
                 onClick={updateEdit}
               >
                 Edit
@@ -111,14 +111,14 @@ function Settings() {
               edit &&
               <div className='dc gap-4'>
                 <button
-                  className='block text-white bg-[#0071b0] hover:bg-[#0d87c9]'
+                  className='block theme-btn'
                   onClick={updateEdit}
                 >
                   Cancel
                 </button>
 
                 <button
-                  className='block text-white bg-[#0071b0] hover:bg-[#0d87c9]'
+                  className='block theme-btn'
                   onClick={updateEdit}
                 >
                   Update
@@ -146,7 +146,7 @@ function Settings() {
             />
 
             <button
-              className='block mx-auto text-white bg-[#0071b0] hover:bg-[#0d87c9]'
+              className='block mx-auto theme-btn'
             >
               Update
             </button>

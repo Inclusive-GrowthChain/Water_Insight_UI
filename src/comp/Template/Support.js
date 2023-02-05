@@ -8,7 +8,7 @@ function Support() {
         </textarea>
 
         <button
-          className="w-40 block mx-auto text-white bg-[#0071b0] hover:bg-[#0d87c9]"
+          className="theme-btn w-40 block mx-auto"
         >
           Submit
         </button>
