@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export function SelectBox({ name = "", value = "", onChange, optionsList = [] }) {
   return (
-    <div>
+    <div className='mb-3'>
       <label className='mb-0.5 font-medium' htmlFor={name}>{name}</label>
       <select
         name={name}
@@ -39,7 +39,7 @@ export function Cal() {
   }
 
   return (
-    <div>
+    <div className='mb-5'>
       <div className='mb-0.5 font-medium'>Select Date Range</div>
 
       <DatePicker
