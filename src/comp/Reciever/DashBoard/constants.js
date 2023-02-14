@@ -34,8 +34,7 @@ export const parameterOptions = [
   "Chlorophyll",
 ]
 
-export const monthOptions = [
-  "All",
+export const months = [
   "Jan",
   "Feb",
   "Mar",
@@ -48,4 +47,9 @@ export const monthOptions = [
   "Oct",
   "Nov",
   "Dec",
+]
+
+export const monthOptions = [
+  "All",
+  ...months
 ]
