@@ -5,12 +5,12 @@ function Sidebar({ role, list = [] }) {
   const navigate = useNavigate()
 
   return (
-    <aside className='dfc px-1 py-4 bg-[#0071b0] text-white text-sm'>
+    <aside className='dfc px-1 py-4 text-sm shadow-[0_12px_20px_0_rgba(0,0,0,.1)]'>
       {
         list.map(l => (
           <div
             key={l.title}
-            className={`df px-4 py-2 cursor-pointer border-l-2 ${`/${role}/${l.to}` === pathname ? "border-white bg-[#0d87c9]" : "hover:bg-[#0d87c9] rounded border-l-transparent"}`}
+            className={`df px-4 py-2 rounded-md cursor-pointer ${`/${role}/${l.to}` === pathname ? "active text-primary-600 bg-primary-100 stroke-primary-600 font-medium" : "hover:bg-primary-100 hover:text-primary-600 text-[#5D7285] stroke-primary-100"}`}
             onClick={() => navigate(l.to)}
           >
             {l.icon}

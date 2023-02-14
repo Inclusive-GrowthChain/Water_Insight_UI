@@ -6,23 +6,23 @@ import { ReactComponent as User } from '../../assets/svg/users/user.svg';
 
 const list = [
   // {
-  //   icon: <Test className="stroke-white" />,
+  //   icon: <Test className="app-sb-ic-stroke" />,
   //   title: "Start a Test",
   //   to: 'start-test'
   // },
   {
-    icon: <User className="w-5 h-5 fill-white" />,
+    icon: <User className="w-5 h-5 app-sb-ic-fill" />,
     title: "My Contribution",
     to: 'my-contribution'
   },
   {
     title: "Support",
-    icon: <Support className="fill-white" />,
+    icon: <Support className="app-sb-ic-fill" />,
     to: 'support'
   },
   {
     title: "Settings",
-    icon: <Setting className="w-5 h-5 fill-white" />,
+    icon: <Setting className="app-sb-ic-fill w-5 h-5" />,
     to: 'setting'
   },
 ]

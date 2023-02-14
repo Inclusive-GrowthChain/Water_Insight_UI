@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,6 +7,7 @@
 @layer base {
   body {
     scroll-behavior: smooth;
+    font-family: 'Inter', sans-serif;
   }
 
   body ::-webkit-scrollbar {
@@ -107,7 +110,7 @@
   .loader {
     @apply 
       w-10 h-10 border-4 animate-spin rounded-full 
-      border-slate-100 border-t-slate-900
+      border-primary-100 border-t-primary-600
     ;
   }  
   
@@ -121,9 +124,9 @@
 
   .DropDownBtn:not(.active){
     @apply 
-      hover:bg-slate-100 hover:text-slate-900 
-      focus:bg-slate-100 focus:text-slate-900 
-      active:bg-slate-100 active:text-slate-900 
+      hover:bg-primary-100 hover:text-primary-600 
+      focus:bg-primary-100 focus:text-primary-600 
+      active:bg-primary-100 active:text-primary-600 
     ;
   }
 
@@ -152,7 +155,23 @@
   }  
 
   .theme-btn {
-    @apply text-white bg-[#0071b0] hover:bg-[#0d87c9];
+    @apply text-white bg-primary-600 hover:bg-primary-500;
+  }
+
+  .app-sb-ic-fill {
+    @apply fill-[#5D7285];
+  }
+
+  .app-sb-ic-stroke {
+    @apply stroke-[#5D7285];
+  }
+
+  .active .app-sb-ic-fill {
+    @apply fill-primary-600;
+  }
+
+  .active .app-sb-ic-stroke {
+    @apply stroke-primary-600;
   }
 }
 

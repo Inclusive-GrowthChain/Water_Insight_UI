@@ -6,17 +6,17 @@ import { ReactComponent as Chart } from '../../assets/svg/common/chart.svg';
 const list = [
   {
     title: "Dashboard",
-    icon: <Chart className="stroke-white" />,
+    icon: <Chart className="app-sb-ic-stroke" />,
     to: 'dashboard'
   },
   {
     title: "Support",
-    icon: <Support className="fill-white" />,
+    icon: <Support className="app-sb-ic-fill" />,
     to: 'support'
   },
   {
     title: "Settings",
-    icon: <Setting className="w-5 h-5 fill-white" />,
+    icon: <Setting className="app-sb-ic-fill w-5 h-5" />,
     to: 'setting'
   },
 ]

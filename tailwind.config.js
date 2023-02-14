@@ -3,6 +3,16 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      colors: {
+        primary: {
+          600: "hsla(218,80%,17%,1)",
+          500: "hsla(218,80%,17%,.8)",
+          400: "hsla(218,80%,17%,.6)",
+          300: "hsla(218,80%,17%,.4)",
+          200: "hsla(218,80%,17%,.2)",
+          100: "hsla(218,80%,17%,.1)",
+        }
+      },
       boxShadow: {
         'light': '0 0 2px rgba(0, 0, 0, .3)',
         'outer': '0 1px 4px rgba(0, 0, 0, .3)',
