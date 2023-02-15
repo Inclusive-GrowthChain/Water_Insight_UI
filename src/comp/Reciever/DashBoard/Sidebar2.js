@@ -1,17 +1,17 @@
-import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Colors, Title, Tooltip, Legend } from 'chart.js';
+import { Chart, CategoryScale, LinearScale, BarElement, Colors, Title, Tooltip, Legend } from 'chart.js';
 import { useKeenSlider } from "keen-slider/react"
-import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import "keen-slider/keen-slider.min.css";
 
 import { ReactComponent as Arrow } from '../../../assets/svg/arrows/dropdown.svg';
 import { options } from "./constants";
-import dummyData from './dummyData';
+import dummyData from './dummyData2';
 
 Chart.register(
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  // PointElement,
+  BarElement,
   Colors,
   Title,
   Tooltip,
@@ -46,10 +46,10 @@ function Sidebar2() {
       <div ref={sliderRef} className="keen-slider flex-1">
         {dummyData.map(d => (
           <div key={d.id} className="keen-slider__slide p-4 rounded-lg border shadow-lg">
-            <button className='block mb-2 p-0 text-sm'>
+            <button className='block w-full mb-2 p-0 pb-1 text-sm border-b text-left hover:font-semibold'>
               {d.title}
             </button>
-            <Line data={d.data} options={options} />
+            <Bar data={d.data} options={options} />
           </div>
         ))}
       </div>

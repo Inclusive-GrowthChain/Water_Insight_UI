@@ -5,7 +5,7 @@ function Sidebar({ role, list = [] }) {
   const navigate = useNavigate()
 
   return (
-    <aside className='dfc px-1 py-4 text-sm shadow-[0_12px_20px_0_rgba(0,0,0,.1)]'>
+    <aside className='dfc px-2 py-4 text-sm shadow-[0_12px_20px_0_rgba(0,0,0,.1)]'>
       {
         list.map(l => (
           <div

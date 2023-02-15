@@ -31,6 +31,10 @@ function App() {
 
         <Route path='reciever' element={<Reciever />}>
           <Route path='dashboard' element={<RecieverDashBoard />} />
+          <Route path='device-data' element={<div>Coming soon...</div>} />
+          <Route path='satellite-data' element={<div>Coming soon...</div>} />
+          <Route path='device-config' element={<div>Coming soon...</div>} />
+          <Route path='e-coli-data' element={<div>Coming soon...</div>} />
           <Route path='support' element={<TemplateSupport />} />
           <Route path='setting' element={<TemplateSetting />} />
         </Route>

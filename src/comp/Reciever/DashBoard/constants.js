@@ -5,6 +5,24 @@ export const options = {
       display: false
     },
   },
+  scales: {
+    x: {
+      grid: {
+        display: false,
+      },
+      border: {
+        display: false
+      }
+    },
+    y: {
+      grid: {
+        display: false,
+      },
+      border: {
+        display: false
+      }
+    }
+  },
   // scales: {
   //   y: {
   //     title: {
