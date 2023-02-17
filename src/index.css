@@ -36,12 +36,17 @@
 
   input,
   textarea {
-    @apply block w-full px-3 py-2 text-sm text-gray-900 rounded focus:outline-none border border-gray-300;
+    @apply 
+      block w-full px-3 py-2 
+      text-sm text-gray-900 rounded 
+      focus:outline-none border border-[#EBEBEB]
+      placeholder:text-[#999CA0]
+    ;
   }
 
   select {
     @apply w-full pl-4 pr-6 py-1.5 border appearance-none rounded focus:outline-none
-    bg-no-repeat border-gray-300 bg-[url('./assets/img/dropdown-arrow.png')];
+    bg-no-repeat border-[#EBEBEB] bg-[url('./assets/img/dropdown-arrow.png')];
     background-position: 94%;
     background-size: 16px;
   }
