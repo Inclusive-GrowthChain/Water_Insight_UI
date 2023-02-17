@@ -13,6 +13,10 @@ const StartTest = lazy(() => import("./comp/Contributor/StartTest"))
 const Contributor = lazy(() => import("./comp/Contributor"))
 
 const RecieverDashBoard = lazy(() => import("./comp/Reciever/DashBoard"))
+const SatelliteData = lazy(() => import("./comp/Reciever/SatelliteData"))
+const DeviceConfig = lazy(() => import("./comp/Reciever/DeviceConfig"))
+const DeviceData = lazy(() => import("./comp/Reciever/DeviceData"))
+const EColiData = lazy(() => import("./comp/Reciever/EColi"))
 const Reciever = lazy(() => import("./comp/Reciever"))
 
 function App() {
@@ -29,12 +33,12 @@ function App() {
           <Route path='setting' element={<TemplateSetting />} />
         </Route>
 
-        <Route path='reciever' element={<Reciever />}>
+        <Route path='receiver' element={<Reciever />}>
+          <Route path='satellite-data' element={<SatelliteData />} />
+          <Route path='device-config' element={<DeviceConfig />} />
+          <Route path='device-data' element={<DeviceData />} />
+          <Route path='e-coli-data' element={<EColiData />} />
           <Route path='dashboard' element={<RecieverDashBoard />} />
-          <Route path='device-data' element={<div>Coming soon...</div>} />
-          <Route path='satellite-data' element={<div>Coming soon...</div>} />
-          <Route path='device-config' element={<div>Coming soon...</div>} />
-          <Route path='e-coli-data' element={<div>Coming soon...</div>} />
           <Route path='support' element={<TemplateSupport />} />
           <Route path='setting' element={<TemplateSetting />} />
         </Route>

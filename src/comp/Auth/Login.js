@@ -16,8 +16,8 @@ function Login() {
   const onSumbit = () => {
     if (email === "contributor" && pass === "contributor") {
       navigate("contributor")
-    } else if (email === "reciever" && pass === "reciever") {
-      navigate("reciever")
+    } else if (email === "receiver" && pass === "receiver") {
+      navigate("receiver")
     }
   }
 
