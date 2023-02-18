@@ -43,7 +43,9 @@ function EColi() {
               <td className='w-40 px-4 py-2'>Test name</td>
               <td className='w-28 px-4 py-2'>Type</td>
               <td className='w-40 px-4 py-2'>Device Id</td>
-              <td className='w-20 px-4 py-2'>E-coli</td>
+              <td className='w-36 px-4 py-2'>Started value</td>
+              <td className='w-36 px-4 py-2'>Ended value</td>
+              <td className='w-28 px-4 py-2'>Percentage</td>
               <td className='w-32 px-4 py-2'>Date</td>
               <td className='w-28 px-4 py-2'>Status</td>
             </tr>
@@ -57,7 +59,9 @@ function EColi() {
                   <td className='px-4 py-2'>{d.testName}</td>
                   <td className='px-4 py-2'>{d.type}</td>
                   <td className='px-4 py-2'>{d.deviceId}</td>
-                  <td className='px-4 py-2'>{d.eColi}</td>
+                  <td className='px-4 py-2'>{d.startedValue}</td>
+                  <td className='px-4 py-2'>{d.endedValue}</td>
+                  <td className='px-4 py-2'>{d.percentage}</td>
                   <td className='px-4 py-2'>{d.date}</td>
                   <td className='px-4 py-2'><StatusBtn type={d.status} /></td>
                 </tr>

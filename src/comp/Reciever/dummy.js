@@ -1,4 +1,4 @@
-import getRandom from "../../helper/getRandom"
+import getRandom from "../../helper/getRandom";
 
 const dummy = [
   {
@@ -13,6 +13,9 @@ const dummy = [
     chlorophyll: getRandom(10, 200),
     ph: getRandom(10, 200),
     secchiDepth: getRandom(10, 200),
+    startedValue: 1000,
+    endedValue: 900,
+    percentage: "90%",
     eColi: getRandom(10, 200),
     date: "12-01-23",
     status: "Normal",
@@ -29,6 +32,9 @@ const dummy = [
     chlorophyll: getRandom(10, 200),
     ph: getRandom(10, 200),
     secchiDepth: getRandom(10, 200),
+    startedValue: 1000,
+    endedValue: 500,
+    percentage: "50%",
     eColi: getRandom(10, 200),
     date: "13-01-23",
     status: "Warning",
@@ -45,6 +51,9 @@ const dummy = [
     chlorophyll: getRandom(10, 200),
     ph: getRandom(10, 200),
     secchiDepth: getRandom(10, 200),
+    startedValue: 1000,
+    endedValue: 200,
+    percentage: "20%",
     eColi: getRandom(10, 200),
     date: "14-01-23",
     status: "Danger",

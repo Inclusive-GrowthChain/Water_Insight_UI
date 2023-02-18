@@ -22,20 +22,27 @@ function DeviceConfig() {
       </div>
 
       <div className='grid grid-cols-2 gap-6 px-6 max-w-3xl'>
-        <SelectBox
-          name='Device Id'
-          value={deviceId}
-          onChange={setDeviceId}
-        />
+        <div className='mb-3'>
+          <label className='mb-0.5 font-medium' htmlFor="Device Id">Device Id</label>
+          <input
+            id='Device Id'
+            type="text"
+            value={deviceId}
+            onChange={e => setDeviceId(e.target.value)}
+          />
+        </div>
+
         <SelectBox
           name='Country'
           value={country}
           onChange={setCountry}
+          optionsList={["India"]}
         />
         <SelectBox
           name='State'
           value={state}
           onChange={setState}
+          optionsList={["Andhra Pradesh", "Haryana", "Tamil Nadu"]}
         />
         <SelectBox
           name='Testing Area Type'
