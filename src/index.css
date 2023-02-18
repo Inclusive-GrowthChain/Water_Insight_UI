@@ -119,6 +119,7 @@
     ;
   }  
   
+
   /* DropDown */
   .DropDownBtn {
     @apply 
@@ -146,6 +147,7 @@
     @apply bg-inherit w-4 h-4 rotate-45 -z-1 border border-inherit;
   }
 
+
   /* Modal */
   .modal-wrapper {
     @apply relative z-50;
@@ -159,6 +161,27 @@
     @apply p-4 lg:p-6 rounded-2xl bg-white shadow-xl transition-all;
   }  
 
+
+  /* Tab */
+  .tab-list-wrapper {
+    @apply border-b border-[hsl(0,0%,77%,.31)];
+  }
+  
+  .tab span {
+    @apply 
+      absolute block -bottom-px left-0 w-full h-1 
+      rounded-sm bg-primary-600
+    ;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: all .3s ease-in-out;
+  }
+  
+  .tab.selected span {
+    transform: scaleX(1);
+  }
+
+    
   .theme-btn {
     @apply text-white bg-primary-600 hover:bg-primary-500;
   }

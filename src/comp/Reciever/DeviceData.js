@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { ReactComponent as Search } from '../../assets/svg/common/search.svg';
-import { IdBtn, StatusBtn } from './Common/Btns';
-import dummy from './dummy';
+import Table from './Common/Table';
+import Tabs from '../UIComp/Tabs';
 
 const deviceList = ["Hussain Sagar", "Apartment", "Durgam Cheruvu"]
+
+const lists = ["Kd", "Turbidity", "Secchi Depth"]
 
 function DeviceData() {
   const [device, setDevice] = useState("")
@@ -39,41 +41,17 @@ function DeviceData() {
         </div>
       </div>
 
-      <div className="px-4 mt-4 scroll-y h-full overflow-x-auto">
-        <table className='table-fixed w-full'>
-          <thead>
-            <tr className='sticky top-0 bg-white shadow-sm font-medium text-[#809FB8] border-b'>
-              <td className='w-20 px-4 py-2 text-center'>#</td>
-              <td className='w-40 px-4 py-2'>Test name</td>
-              <td className='w-28 px-4 py-2'>Type</td>
-              <td className='w-40 px-4 py-2'>Device Id</td>
-              <td className='w-20 px-4 py-2'>Kd</td>
-              <td className='w-40 px-4 py-2'>Turbidity</td>
-              <td className='w-40 px-4 py-2'>Secchi Depth</td>
-              <td className='w-32 px-4 py-2'>Date</td>
-              <td className='w-28 px-4 py-2'>Status</td>
-            </tr>
-          </thead>
-
-          <tbody>
-            {
-              dummy.map(d => (
-                <tr key={d.id} className="text-sm border-b">
-                  <td className='px-4 py-2 text-center'><IdBtn id={d.id} type={d.status} /></td>
-                  <td className='px-4 py-2'>{d.testName}</td>
-                  <td className='px-4 py-2'>{d.type}</td>
-                  <td className='px-4 py-2'>{d.deviceId}</td>
-                  <td className='px-4 py-2'>{d.kd}</td>
-                  <td className='px-4 py-2'>{d.turbidity}</td>
-                  <td className='px-4 py-2'>{d.secchiDepth}</td>
-                  <td className='px-4 py-2'>{d.date}</td>
-                  <td className='px-4 py-2'><StatusBtn type={d.status} /></td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-      </div>
+      <Tabs
+        tabsList={lists}
+        listClass='mx-6'
+        tabClass='pb-2 pt-4'
+        panelClass='scroll-y overflow-x-auto ml-4 my-2'
+        panelChildCls="h-full"
+      >
+        <Table firstCol='testName' value='kd' />
+        <Table firstCol='testName' value='turbidity' />
+        <Table firstCol='testName' value='secchiDepth' />
+      </Tabs>
     </div>
   )
 }
