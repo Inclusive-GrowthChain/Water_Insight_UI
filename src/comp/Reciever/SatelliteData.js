@@ -38,7 +38,7 @@ function SatelliteData() {
       <div className="px-4 mt-4 scroll-y h-full overflow-x-auto">
         <table className='table-fixed w-full'>
           <thead>
-            <tr className='font-medium text-[#809FB8] border-b'>
+            <tr className='sticky top-0 bg-white shadow-sm font-medium text-[#809FB8] border-b'>
               <td className='w-20 px-4 py-2 text-center'>#</td>
               <td className='w-40 px-4 py-2'>Lake name</td>
               <td className='w-40 px-4 py-2'>Turbidity</td>
@@ -54,7 +54,7 @@ function SatelliteData() {
             {
               dummy.map(d => (
                 <tr key={d.id} className="text-sm border-b">
-                  <td className='px-4 py-2 text-center'><IdBtn id={d.id} /></td>
+                  <td className='px-4 py-2 text-center'><IdBtn id={d.id} type={d.status} /></td>
                   <td className='px-4 py-2'>{d.lakeName}</td>
                   <td className='px-4 py-2'>{d.turbidity}</td>
                   <td className='px-4 py-2'>{d.salinity}</td>
