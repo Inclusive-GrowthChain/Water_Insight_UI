@@ -22,7 +22,7 @@ const dummy = [
   },
   {
     id: getRandom(100, 999),
-    testName: "Apartment",
+    testName: "Osman Sagar",
     type: "Other",
     deviceId: getRandom(10, 200),
     kd: getRandom(10, 200),
@@ -79,7 +79,7 @@ const dummy = [
   },
   {
     id: getRandom(100, 999),
-    testName: "Apartment",
+    testName: "Osman Sagar",
     type: "Other",
     deviceId: getRandom(10, 200),
     kd: getRandom(10, 200),
@@ -136,7 +136,7 @@ const dummy = [
   },
   {
     id: getRandom(100, 999),
-    testName: "Apartment",
+    testName: "Osman Sagar",
     type: "Other",
     deviceId: getRandom(10, 200),
     kd: getRandom(10, 200),
@@ -193,7 +193,7 @@ const dummy = [
   },
   {
     id: getRandom(100, 999),
-    testName: "Apartment",
+    testName: "Osman Sagar",
     type: "Other",
     deviceId: getRandom(10, 200),
     kd: getRandom(10, 200),

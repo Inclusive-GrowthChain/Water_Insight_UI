@@ -3,7 +3,7 @@ import { ReactComponent as Search } from '../../assets/svg/common/search.svg';
 import { IdBtn, StatusBtn } from './Common/Btns';
 import dummy from './dummy';
 
-const deviceList = ["Hussain Sagar", "Apartment", "Durgam Cheruvu"]
+const deviceList = ["Hussain Sagar", "Osman Sagar", "Durgam Cheruvu"]
 
 function EColi() {
   const [device, setDevice] = useState("")

@@ -3,7 +3,7 @@ import { ReactComponent as Search } from '../../assets/svg/common/search.svg';
 import Table from './Common/Table';
 import Tabs from '../UIComp/Tabs';
 
-const deviceList = ["Hussain Sagar", "Apartment", "Durgam Cheruvu"]
+const deviceList = ["Hussain Sagar", "Osman Sagar", "Durgam Cheruvu"]
 
 const lists = ["Kd", "Turbidity", "Secchi Depth"]
 

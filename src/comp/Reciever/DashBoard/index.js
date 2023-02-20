@@ -4,19 +4,43 @@ import Sidebar from "./Sidebar2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const lat = "13.0827"
-const lng = "80.2707"
-
 const lakesList = ["Hussain Sagar", "Osman Sagar", "Durgam Cheruvu"]
 
 function DashBoard() {
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
-  const [lake, setLake] = useState("")
+  const [lake, setLake] = useState("Hussain Sagar")
+  const [coord, setCoord] = useState({
+    lat: "17.4239",
+    lng: "78.4738",
+  })
 
   const onChange = ([start, end]) => {
     setStartDate(start)
     setEndDate(end)
+  }
+
+  const updateLake = e => {
+    const val = e.target.value
+    setLake(val)
+    if (val === "Hussain Sagar") {
+      setCoord({
+        lat: "17.4239",
+        lng: "78.4738",
+      })
+    }
+    if (val === "Osman Sagar") {
+      setCoord({
+        lat: "17.3763",
+        lng: "78.2989",
+      })
+    }
+    if (val === "Durgam Cheruvu") {
+      setCoord({
+        lat: "17.4300",
+        lng: "78.3895",
+      })
+    }
   }
 
   return (
@@ -24,7 +48,7 @@ function DashBoard() {
       <div className="df gap-6 p-4 pb-2">
         <h1 className="text-lg font-medium mr-auto">Dashboard</h1>
 
-        <select className="w-fit" value={lake} onChange={e => setLake(e.target.value)}>
+        <select className="w-fit" value={lake} onChange={updateLake}>
           <option value="" disabled>Lake</option>
           {lakesList.map(l => <option key={l} value={l}>{l}</option>)}
         </select>
@@ -59,7 +83,7 @@ function DashBoard() {
           loading="lazy"
           allowFullScreen
           referrerPolicy="no-referrer-when-downgrade"
-          src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCZ4YsHJ-UaXOd2W95mXMNhrH2SJXNzUPU&q=${lat},${lng}&center=${lat},${lng}&zoom=6`}
+          src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCZ4YsHJ-UaXOd2W95mXMNhrH2SJXNzUPU&q=${coord.lat},${coord.lng}&center=${coord.lat},${coord.lng}&zoom=6`}
           title="map"
         ></iframe>
       </div>
