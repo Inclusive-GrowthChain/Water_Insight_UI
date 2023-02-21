@@ -24,14 +24,14 @@ const list = [
     to: 'satellite-data'
   },
   {
-    title: "Device Config",
-    icon: <Config className="app-sb-ic-fill rotate-90" />,
-    to: 'device-config'
-  },
-  {
     title: "E.coli Data",
     icon: <ChartLine className="app-sb-ic-fill" />,
     to: 'e-coli-data'
+  },
+  {
+    title: "Device Config",
+    icon: <Config className="app-sb-ic-fill rotate-90" />,
+    to: 'device-config'
   },
   {
     title: "Support",
