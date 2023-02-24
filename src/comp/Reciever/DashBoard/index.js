@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar2";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import GenerateReport from '../Modals/GenerateReport';
 
 const lakesList = ["Hussain Sagar", "Osman Sagar", "Durgam Cheruvu"]
 
@@ -10,10 +11,13 @@ function DashBoard() {
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
   const [lake, setLake] = useState("Hussain Sagar")
+  const [open, setOpen] = useState(false)
   const [coord, setCoord] = useState({
     lat: "17.4239",
     lng: "78.4738",
   })
+
+  const updateModal = () => setOpen(p => !p)
 
   const onChange = ([start, end]) => {
     setStartDate(start)
@@ -72,7 +76,12 @@ function DashBoard() {
           <button className='px-2 py-1 text-sm rounded-md bg-white'>Year</button>
         </div>
 
-        <button className="theme-btn text-sm">Generate report</button>
+        <button
+          className="theme-btn text-sm"
+          onClick={updateModal}
+        >
+          Generate report
+        </button>
       </div>
 
       <div className="flex-1">
@@ -89,6 +98,14 @@ function DashBoard() {
       </div>
 
       <Sidebar />
+
+      {
+        open &&
+        <GenerateReport
+          isOpen
+          closeModal={updateModal}
+        />
+      }
     </section>
   )
 }

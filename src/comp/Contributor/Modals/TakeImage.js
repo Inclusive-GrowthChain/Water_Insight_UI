@@ -1,12 +1,12 @@
-import Modal, { ModalHeader } from '../../UIComp/Modal';
+import Modal from '../../UIComp/Modal';
 
 function TakeImage({ isOpen, closeModal }) {
   return (
     <Modal
       isOpen={isOpen}
+      title='Take Image'
       closeModal={closeModal}
     >
-      <ModalHeader title='Take Image' />
     </Modal>
   )
 }

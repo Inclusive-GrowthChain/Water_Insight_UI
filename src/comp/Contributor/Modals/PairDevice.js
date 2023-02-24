@@ -1,12 +1,12 @@
-import Modal, { ModalHeader } from '../../UIComp/Modal';
+import Modal from '../../UIComp/Modal';
 
 function PairDevice({ isOpen, closeModal }) {
   return (
     <Modal
       isOpen={isOpen}
+      title='Pair your Device'
       closeModal={closeModal}
     >
-      <ModalHeader title='Pair your Device' />
     </Modal>
   )
 }
