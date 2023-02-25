@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Link } from 'react-router-dom';
 import Template from './Template';
 
@@ -7,24 +7,24 @@ function Input({ name = "" }) {
     <input
       type="text"
       placeholder={name}
-      className="focus-within:border-slate-900"
+      className="mb-4 focus-within:border-slate-900"
     />
   )
 }
 
 function Signup() {
-  const [type, setType] = useState("")
+  // const [type, setType] = useState("")
 
   return (
     <Template>
       <div className='p-6 rounded-xl shadow-outer'>
         <h1 className="mb-4 text-2xl font-medium text-center">Sign up</h1>
 
-        <div className="grid sm:grid-cols-2 gap-4 max-h-[45vh] -mr-6 pr-6 overflow-y-auto">
-          <Input name="Name" />
-          <Input name="Email" />
-          <Input name="DOB" />
-          <Input name="Phone" />
+        <div className="max-h-[45vh] -mr-6 pr-6 overflow-y-auto">
+          <Input name="Org Name" />
+          <Input name="Org Email" />
+          <Input name="Org Phone" />
+          {/* <Input name="DOB" />
           <Input name="Address" />
           <Input name="Postal code" />
           <Input name="License Key" />
@@ -40,7 +40,7 @@ function Signup() {
             </select>
 
             <Input name="Govt ID No." />
-          </div>
+          </div> */}
           <Input name="Password" />
           <Input name="Confirm Password" />
         </div>

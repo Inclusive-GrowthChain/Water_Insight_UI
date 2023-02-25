@@ -8,8 +8,8 @@ import { ReactComponent as Lock } from '../../assets/svg/common/lock.svg';
 import Template from './Template';
 
 function Login() {
-  const [email, setEmail] = useState("contributor")
-  const [pass, setPass] = useState("contributor")
+  const [email, setEmail] = useState("receiver")
+  const [pass, setPass] = useState("receiver")
   const [type, setType] = useState("password")
   const navigate = useNavigate()
 
