@@ -10,9 +10,12 @@ const Login = lazy(() => import("./comp/Auth/Login"))
 const TemplateSetting = lazy(() => import("./comp/Template/Setting"))
 const TemplateSupport = lazy(() => import("./comp/Template/Support"))
 
-// const MyContribution = lazy(() => import("./comp/Contributor/MyContribution"))
-// const StartTest = lazy(() => import("./comp/Contributor/StartTest"))
-// const Contributor = lazy(() => import("./comp/Contributor"))
+const MyContribution = lazy(() => import("./comp/Contributor/MyContribution"))
+const OrderEntry = lazy(() => import("./comp/Contributor/OrderEntry"))
+const StartTest = lazy(() => import("./comp/Contributor/StartTest"))
+const OrderList = lazy(() => import("./comp/Contributor/OrderList"))
+const Payments = lazy(() => import("./comp/Contributor/Payments"))
+const Contributor = lazy(() => import("./comp/Contributor"))
 
 const RecieverDashBoard = lazy(() => import("./comp/Reciever/DashBoard"))
 const SatelliteData = lazy(() => import("./comp/Reciever/SatelliteData"))
@@ -28,12 +31,15 @@ function App() {
         <Route path='/' element={<Login />} />
         <Route path='signup' element={<Signup />} />
 
-        {/* <Route path='contributor' element={<Contributor />}>
+        <Route path='contributor' element={<Contributor />}>
           <Route path='my-contribution' element={<MyContribution />} />
+          <Route path='order-entry' element={<OrderEntry />} />
           <Route path='start-test' element={<StartTest />} />
+          <Route path='order-list' element={<OrderList />} />
+          <Route path='payments' element={<Payments />} />
           <Route path='support' element={<TemplateSupport />} />
           <Route path='setting' element={<TemplateSetting />} />
-        </Route> */}
+        </Route>
 
         <Route path='receiver' element={<Reciever />}>
           <Route path='satellite-data' element={<SatelliteData />} />

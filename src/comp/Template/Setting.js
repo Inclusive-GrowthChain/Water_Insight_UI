@@ -30,12 +30,13 @@ function Settings() {
   const [show, setShow] = useState("profile")
   const [edit, setEdit] = useState(false)
   const [details, setDetails] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
     oldPassword: '',
     newPassword: '',
+    firstName: '',
+    lastName: '',
+    wallet: '',
+    email: '',
+    phone: '',
   })
 
   const updateEdit = () => setEdit(p => !p)
@@ -94,6 +95,13 @@ function Settings() {
               name="phone"
               label='Phone number'
               value={details.phone}
+              onChange={onChange}
+            />
+
+            <Input
+              name="wallet"
+              label='Wallet Id'
+              value={details.wallet}
               onChange={onChange}
             />
 

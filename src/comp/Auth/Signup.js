@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import { useState } from "react";
 import { Link } from 'react-router-dom';
 import Template from './Template';
 
@@ -13,34 +13,30 @@ function Input({ name = "" }) {
 }
 
 function Signup() {
-  // const [type, setType] = useState("")
+  const [role, setRole] = useState("")
 
   return (
     <Template>
       <div className='p-6 rounded-xl shadow-outer'>
         <h1 className="mb-4 text-2xl font-medium text-center">Sign up</h1>
 
-        <div className="max-h-[45vh] -mr-6 pr-6 overflow-y-auto">
-          <Input name="Org Name" />
+        <div className="max-h-[45vh] grid grid-cols-2 gap-2 -mr-6 pr-6 overflow-y-auto">
+          <Input name="Org First Name" />
+          <Input name="Org Last Name" />
           <Input name="Org Email" />
           <Input name="Org Phone" />
-          {/* <Input name="DOB" />
-          <Input name="Address" />
-          <Input name="Postal code" />
-          <Input name="License Key" />
-          <div className="grid-row-full df">
+          <Input name="Wallet Id" />
+          <div className="">
             <select
-              value={type}
-              onChange={e => setType(e.target.value)}
-              className="w-24 text-sm"
+              value={role}
+              onChange={e => setRole(e.target.value)}
+              className="w-full text-sm"
             >
-              <option value="" disabled>ID Type</option>
-              <option value="Aadhar Card">Aadhar</option>
-              <option value="Pan Card">Pan Card</option>
+              <option value="" disabled>Role</option>
+              <option value="Consumer">Consumer</option>
+              <option value="Contributor">Contributor</option>
             </select>
-
-            <Input name="Govt ID No." />
-          </div> */}
+          </div>
           <Input name="Password" />
           <Input name="Confirm Password" />
         </div>
