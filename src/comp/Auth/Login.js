@@ -17,7 +17,7 @@ function Login() {
     if (email === "contributor" && pass === "contributor") {
       navigate("contributor")
     } else if (email === "receiver" && pass === "receiver") {
-      navigate("receiver")
+      navigate("/receiver/dashboard")
     }
   }
 

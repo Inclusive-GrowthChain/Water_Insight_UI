@@ -5,14 +5,14 @@ import { ReactComponent as Support } from '../../assets/svg/common/support.svg';
 import { ReactComponent as Router } from '../../assets/svg/common/router.svg';
 import { ReactComponent as Config } from '../../assets/svg/common/config.svg';
 import { ReactComponent as Chart } from '../../assets/svg/common/chart.svg';
-// import { ReactComponent as Home } from '../../assets/svg/common/home.svg';
+import { ReactComponent as Home } from '../../assets/svg/common/home.svg';
 
 const list = [
-  // {
-  //   title: "Dashboard",
-  //   icon: <Home className="app-sb-ic-fill" />,
-  //   to: 'dashboard'
-  // },
+  {
+    title: "Dashboard",
+    icon: <Home className="app-sb-ic-fill" />,
+    to: 'dashboard'
+  },
   {
     title: "Device Data",
     icon: <Router className="app-sb-ic-fill" />,
