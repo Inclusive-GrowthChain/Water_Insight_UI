@@ -13,7 +13,6 @@ function Payments() {
     <section className='dfc h-full overflow-y-hidden'>
       <div className='df gap-4 px-4 py-4'>
         <h1 className='text-2xl'>Payments</h1>
-
       </div>
 
       <div className='scroll-y overflow-x-auto px-4 mb-2'>

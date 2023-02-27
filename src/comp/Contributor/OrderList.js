@@ -1,83 +1,58 @@
-import { useState } from "react";
-import Input from "../Common/Input";
+import createArr from '../../helper/createArr';
+import getRandom from '../../helper/getRandom';
+
+const data = createArr(20).map(d => ({
+  id: `${getRandom(100, 1000)}-${getRandom(100, 1000)}`,
+  emailId: `raj${d}@gmail.com`,
+  startDate: "12-12-22",
+  endDate: "13-12-22",
+  orderDate: "13-12-22",
+}))
 
 function OrderList() {
-  const [detail, setDetail] = useState({
-    orderDate: new Date().toDateString(),
-    startDate: "",
-    endDate: "",
-    email: "raj@gmail.com",
-    type: "",
-  })
-
-  const onChange = (key, val) => {
-    setDetail(p => ({
-      ...p,
-      [key]: val
-    }))
-  }
-
   return (
-    <section className='grid grid-cols-2 gap-8 max-w-lg m-auto p-6 shadow-outer rounded-2xl'>
-      <h1 className='mb-4 text-2xl font-medium grid-col-full text-center'>Order List</h1>
-
-      <div>
-        <label className="mb-1 text-gray-700" htmlFor="data-type">
-          Data type
-        </label>
-
-        <select
-          name=""
-          id="data-type"
-          value={detail.type}
-          onChange={e => setDetail(p => ({
-            ...p,
-            type: e.target.value
-          }))}
-          className="text-sm focus-within:border-slate-900 disabled:bg-gray-50"
-        >
-          <option value="" disabled></option>
-          <option value="ecoli">E-Coli</option>
-          <option value="satellite">Satellite</option>
-          <option value="deviceData">Device Data</option>
-        </select>
+    <section className='dfc h-full overflow-y-hidden'>
+      <div className='df gap-4 px-4 py-4'>
+        <h1 className='text-2xl'>Order List</h1>
       </div>
 
-      <Input
-        type="date"
-        name="Start Date"
-        value={detail.startDate}
-        onChange={val => onChange("startDate", val)}
-      />
+      <div className='scroll-y overflow-x-auto px-4 mb-2'>
+        <table className='w-full table-fixed'>
+          <thead>
+            <tr className='sticky top-0 text-[15px] font-medium bg-slate-200 text-left shadow-sm z-1'>
+              <td className='w-36 p-2 pl-4'>Order Id</td>
+              <td className='w-32 p-2'>Email</td>
+              <td className='w-28 p-2'>Start Date</td>
+              <td className='w-28 p-2'>End Date</td>
+              <td className='w-28 p-2'>Order Date</td>
+              <td className='w-28 p-2'>Order Status</td>
+              <td className='w-28 p-2'></td>
+            </tr>
+          </thead>
 
-      <Input
-        type="date"
-        name="End Date"
-        value={detail.endDate}
-        onChange={val => onChange("endDate", val)}
-      />
-
-      <Input
-        name="Email"
-        value={detail.email}
-        disabled
-      />
-
-      <Input
-        name="Order Date"
-        value={detail.orderDate}
-        disabled
-      />
-
-      <Input
-        name="Order Status"
-        value="Pending"
-        disabled
-      />
-
-      <button className="theme-btn grid-col-full mx-auto px-12">
-        Download
-      </button>
+          <tbody>
+            {
+              data.map((d, i) => (
+                <tr key={d.id} className='text-sm even:bg-slate-100'>
+                  <td className='p-2 pl-4'>{d.id}</td>
+                  <td className='p-2'>{d.emailId}</td>
+                  <td className='p-2'>{d.startDate}</td>
+                  <td className='p-2'>{d.endDate}</td>
+                  <td className='p-2'>{d.orderDate}</td>
+                  <td className={`p-2 ${i % 7 === 0 ? "text-red-400" : i % 2 === 0 ? "text-green-400" : "text-yellow-300"}`}>
+                    {i % 7 === 0 ? "Failed" : i % 2 === 0 ? "Success" : "Pending"}
+                  </td>
+                  <td>
+                    <button className='theme-btn text-xs opacity-80'>
+                      Download
+                    </button>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
     </section>
   )
 }

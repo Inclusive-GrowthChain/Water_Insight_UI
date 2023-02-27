@@ -69,6 +69,12 @@ function OrderEntry() {
         disabled
       />
 
+      <Input
+        name="Price"
+        value="5,000"
+        disabled
+      />
+
       <button className="theme-btn grid-col-full mx-auto px-12">
         Submit
       </button>
