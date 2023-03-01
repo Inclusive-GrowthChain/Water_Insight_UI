@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import PrivateRoute from './comp/Common/PrivateRoute';
 import Loader from './comp/Common/Loader';
 
 import "keen-slider/keen-slider.min.css";
@@ -22,31 +23,25 @@ const SatelliteData = lazy(() => import("./comp/Reciever/SatelliteData"))
 const DeviceConfig = lazy(() => import("./comp/Reciever/DeviceConfig"))
 const DeviceData = lazy(() => import("./comp/Reciever/DeviceData"))
 const EColiData = lazy(() => import("./comp/Reciever/EColi"))
-const Reciever = lazy(() => import("./comp/Reciever"))
 
 function App() {
   return (
     <Suspense fallback={<Loader wrapperCls='h-screen' />}>
       <Routes>
-        <Route path='/' element={<Login />} />
+        <Route path='/login' element={<Login />} />
         <Route path='signup' element={<Signup />} />
 
-        <Route path='contributor' element={<Contributor />}>
-          <Route path='my-contribution' element={<MyContribution />} />
-          <Route path='order-entry' element={<OrderEntry />} />
-          <Route path='start-test' element={<StartTest />} />
-          <Route path='order-list' element={<OrderList />} />
-          <Route path='payments' element={<Payments />} />
-          <Route path='support' element={<TemplateSupport />} />
-          <Route path='setting' element={<TemplateSetting />} />
-        </Route>
-
-        <Route path='receiver' element={<Reciever />}>
+        <Route path='/' element={<PrivateRoute comp={<Contributor />} />}>
           <Route path='satellite-data' element={<SatelliteData />} />
           <Route path='device-config' element={<DeviceConfig />} />
           <Route path='device-data' element={<DeviceData />} />
           <Route path='e-coli-data' element={<EColiData />} />
           <Route path='dashboard' element={<RecieverDashBoard />} />
+          <Route path='my-contribution' element={<MyContribution />} />
+          <Route path='order-entry' element={<OrderEntry />} />
+          <Route path='start-test' element={<StartTest />} />
+          <Route path='order-list' element={<OrderList />} />
+          <Route path='payments' element={<Payments />} />
           <Route path='support' element={<TemplateSupport />} />
           <Route path='setting' element={<TemplateSetting />} />
         </Route>

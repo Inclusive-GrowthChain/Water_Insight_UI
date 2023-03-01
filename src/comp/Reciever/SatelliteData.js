@@ -13,7 +13,9 @@ function SatelliteData() {
   return (
     <div className="dfc h-full overflow-hidden">
       <div className="df gap-6 p-4 pb-2">
-        <h1 className='mr-auto text-2xl font-medium'>Satellite Data</h1>
+        <h1 className='mr-auto text-2xl font-medium'>
+          Satellite Data <span className='text-sm text-gray-600'>(12/12/20 - 01/03/23)</span>
+        </h1>
       </div>
 
       <div className="df px-4">

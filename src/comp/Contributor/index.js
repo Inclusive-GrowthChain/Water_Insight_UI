@@ -1,11 +1,17 @@
-import AppWrapper from "../Template/AppWrapper";
+import useAuthStore from "../../store/auth";
+import { ReactComponent as ChartLine } from '../../assets/svg/common/chart-line.svg';
 import { ReactComponent as Setting } from '../../assets/svg/common/setting.svg';
 import { ReactComponent as Support } from '../../assets/svg/common/support.svg';
 import { ReactComponent as Payment } from '../../assets/svg/common/payment.svg';
 // import { ReactComponent as Test } from '../../assets/svg/common/test.svg';
+import { ReactComponent as Router } from '../../assets/svg/common/router.svg';
+import { ReactComponent as Config } from '../../assets/svg/common/config.svg';
 import { ReactComponent as Brand } from '../../assets/svg/common/brand-sentry.svg';
+import { ReactComponent as Chart } from '../../assets/svg/common/chart.svg';
 import { ReactComponent as List } from '../../assets/svg/common/list.svg';
 import { ReactComponent as User } from '../../assets/svg/users/user.svg';
+import { ReactComponent as Home } from '../../assets/svg/common/home.svg';
+import AppWrapper from "../Template/AppWrapper";
 
 const list = [
   // {
@@ -13,6 +19,31 @@ const list = [
   //   title: "Start a Test",
   //   to: 'start-test'
   // },
+  {
+    title: "Dashboard",
+    icon: <Home className="app-sb-ic-fill" />,
+    to: 'dashboard'
+  },
+  {
+    title: "Device Data",
+    icon: <Router className="app-sb-ic-fill" />,
+    to: 'device-data'
+  },
+  {
+    title: "Satellite Data",
+    icon: <Chart className="app-sb-ic-stroke" />,
+    to: 'satellite-data'
+  },
+  {
+    title: "E.coli Data",
+    icon: <ChartLine className="app-sb-ic-fill" />,
+    to: 'e-coli-data'
+  },
+  {
+    title: "Device Config",
+    icon: <Config className="app-sb-ic-fill rotate-90" />,
+    to: 'device-config'
+  },
   {
     icon: <User className="w-5 h-5 app-sb-ic-fill" />,
     title: "My Contribution",
@@ -45,9 +76,15 @@ const list = [
   },
 ]
 
+const onlyForContributor = ["payments", "device-config"]
+
 function Contributor() {
+  const role = useAuthStore(state => state.role)
+
+  const final = role === "contributor" ? list : list.filter(l => !onlyForContributor.includes(l.to))
+
   return (
-    <AppWrapper role="contributor" list={list} />
+    <AppWrapper list={final} />
   )
 }
 

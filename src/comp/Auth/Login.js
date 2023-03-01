@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import useAuthStore from '../../store/auth';
 
 import { ReactComponent as EyeClose } from '../../assets/svg/common/eye-close.svg';
 import { ReactComponent as EyeOpen } from '../../assets/svg/common/eye-open.svg';
@@ -8,16 +9,20 @@ import { ReactComponent as Lock } from '../../assets/svg/common/lock.svg';
 import Template from './Template';
 
 function Login() {
+  const navigate = useNavigate()
+  const logIn = useAuthStore(state => state.logIn)
+
   const [email, setEmail] = useState("receiver")
   const [pass, setPass] = useState("receiver")
   const [type, setType] = useState("password")
-  const navigate = useNavigate()
 
   const onSumbit = () => {
     if (email === "contributor" && pass === "contributor") {
-      navigate("/contributor/my-contribution")
+      logIn("contributor")
+      navigate("/dashboard")
     } else if (email === "receiver" && pass === "receiver") {
-      navigate("/receiver/dashboard")
+      logIn("receiver")
+      navigate("/dashboard")
     }
   }
 

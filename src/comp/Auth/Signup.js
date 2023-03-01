@@ -21,10 +21,10 @@ function Signup() {
         <h1 className="mb-4 text-2xl font-medium text-center">Sign up</h1>
 
         <div className="max-h-[45vh] grid grid-cols-2 gap-2 -mr-6 pr-6 overflow-y-auto">
-          <Input name="Org First Name" />
-          <Input name="Org Last Name" />
-          <Input name="Org Email" />
-          <Input name="Org Phone" />
+          <Input name="First Name" />
+          <Input name="Last Name" />
+          <Input name="Email" />
+          <Input name="Phone" />
           <Input name="Wallet Id" />
           <div className="">
             <select
@@ -47,7 +47,7 @@ function Signup() {
       </div>
 
       <div className='px-8 py-3 text-sm bg-white rounded-b-xl shadow-outer'>
-        Already have an account, <Link to="/" className='text-[#0071b0] hover:text-[#0d87c9]'>Login</Link>
+        Already have an account, <Link to="/login" className='text-[#0071b0] hover:text-[#0d87c9]'>Login</Link>
       </div>
     </Template>
   )
