@@ -76,7 +76,7 @@ const list = [
   },
 ]
 
-const onlyForContributor = ["payments", "device-config"]
+const onlyForContributor = ["payments", "device-config", "my-contribution"]
 
 function Contributor() {
   const role = useAuthStore(state => state.role)
