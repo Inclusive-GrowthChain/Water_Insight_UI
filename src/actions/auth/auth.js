@@ -1,5 +1,6 @@
 import sendApiReq, { cookies } from '../../utils/sendApiReq';
 import endPoints from '../../utils/endPoints';
+import { errorNotify } from '../../helper/toastifyHelp';
 
 const setTokenToApp = token => {
   cookies.set("WaterInshight", token, {
@@ -22,11 +23,12 @@ export async function signup(data, onSuccess) {
     onSuccess()
 
   } catch (error) {
+    errorNotify()
     console.log(error)
   }
 }
 
-export async function login(data, onSuccess, onError) {
+export async function login(data, onSuccess) {
   try {
     const { data: { user, token } } = await sendApiReq({
       isAuthendicated: false,
@@ -40,8 +42,8 @@ export async function login(data, onSuccess, onError) {
     onSuccess({ ...user, token })
 
   } catch (error) {
+    errorNotify()
     console.log(error)
-    onError()
   }
 }
 
@@ -69,6 +71,7 @@ export async function updateProfile(data, onSuccess) {
 
     onSuccess()
   } catch (error) {
+    errorNotify()
     console.log(error)
   }
 }

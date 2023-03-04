@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from "react-hook-form";
 
 import { login } from '../../actions/auth/auth';
 import useAuthStore from '../../store/auth';
@@ -14,55 +15,85 @@ function Login() {
   const navigate = useNavigate()
   const logIn = useAuthStore(state => state.logIn)
 
-  const [password, setPassword] = useState("")
-  const [email, setEmail] = useState("")
+  const { register, formState: { errors }, handleSubmit } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  })
+
   const [type, setType] = useState("password")
 
-  const onSumbit = () => {
-    login({ email, password }, data => {
+  const onSumbit = (data) => {
+    login(data, res => {
       navigate("/dashboard")
-      logIn(data)
+      logIn(res)
     })
   }
 
   return (
     <Template>
-      <div className='p-6 rounded-xl shadow-outer'>
+      <form
+        className='p-6 rounded-xl shadow-outer'
+        onSubmit={handleSubmit(onSumbit)}
+      >
         <h1 className="mb-4 text-2xl font-medium text-center">Login</h1>
 
-        <div className='df mb-4 gap-0 bg-[#546880] rounded'>
-          <label className='dc p-2 mb-0' htmlFor="login-email"><User className="fill-white" /></label>
-          <input
-            id='login-email'
-            type="text"
-            placeholder='Email'
-            className='h-10 rounded-l-none'
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
+        <div className='mb-4'>
+          <div className='df gap-0 bg-[#546880] rounded'>
+            <label className='dc p-2 mb-0' htmlFor="login-email"><User className="fill-white" /></label>
+            <input
+              id='login-email'
+              type="email"
+              placeholder='Email'
+              className='h-10 rounded-l-none'
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^\S+@\S+$/i,
+                  message: "Enter a valid email"
+                },
+              })}
+            />
+          </div>
+
+          {
+            errors.email &&
+            <div className="mt-0.5 text-xs text-red-600">
+              {errors.email.message}
+            </div>
+          }
         </div>
 
-        <div className='df mb-6 gap-0 bg-[#546880] rounded relative'>
-          <label className='dc p-2 mb-0' htmlFor="login-password"><Lock className="fill-white" /></label>
-          <input
-            id='login-password'
-            type={type}
-            placeholder='Password'
-            className='h-10 pr-10 rounded-l-none'
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-          {type === "password" && <EyeClose className="absolute top-2 right-2 fill-[#546880]" onClick={() => setType("text")} />}
-          {type === "text" && <EyeOpen className="absolute top-2 right-2 fill-[#546880]" onClick={() => setType("password")} />}
+        <div className='mb-6'>
+          <div className='df gap-0 bg-[#546880] rounded relative'>
+            <label className='dc p-2 mb-0' htmlFor="login-password"><Lock className="fill-white" /></label>
+            <input
+              id='login-password'
+              type={type}
+              placeholder='Password'
+              className='h-10 pr-10 rounded-l-none'
+              {...register("password", {
+                required: "Password is required",
+                minLength: { value: 8, message: "Password should be atleast minimum 8 character" },
+              })}
+            />
+            {type === "password" && <EyeClose className="absolute top-2 right-2 fill-[#546880]" onClick={() => setType("text")} />}
+            {type === "text" && <EyeOpen className="absolute top-2 right-2 fill-[#546880]" onClick={() => setType("password")} />}
+          </div>
+
+          {
+            errors.password &&
+            <div className="mb-6 text-xs text-red-600">
+              {errors.password.message}
+            </div>
+          }
         </div>
 
-        <button
-          className='block px-12 mx-auto bg-[#01264e] text-white rounded-full hover:opacity-95'
-          onClick={onSumbit}
-        >
+        <button className='block px-12 mx-auto bg-[#01264e] text-white rounded-full hover:opacity-95'>
           Login
         </button>
-      </div>
+      </form>
 
       <div className='px-8 py-3 text-sm bg-white rounded-b-xl shadow-outer'>
         Don't have account, <Link to="/signup" className='text-[#0071b0] hover:text-[#0d87c9]'>Sign up</Link>
