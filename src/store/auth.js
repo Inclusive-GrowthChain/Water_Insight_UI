@@ -1,10 +1,17 @@
 import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
 
-const useAuthStore = create((set) => ({
-  role: "",
+const useAuthStore = create(devtools((set, get) => ({
+  userDetails: {},
   loggedIn: false,
-  logIn: (role) => set({ loggedIn: true, role }),
-  logOut: () => set({ loggedIn: false, role: "" }),
-}))
+  logIn: (userDetails) => set({ loggedIn: true, userDetails }),
+  logOut: () => set({ loggedIn: false, userDetails: {} }),
+  updateUserDetails: (newData) => set({
+    userDetails: {
+      ...get().userDetails,
+      ...newData
+    },
+  })
+})))
 
 export default useAuthStore

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
+import { login } from '../../actions/auth/auth';
 import useAuthStore from '../../store/auth';
 
 import { ReactComponent as EyeClose } from '../../assets/svg/common/eye-close.svg';
@@ -12,18 +14,15 @@ function Login() {
   const navigate = useNavigate()
   const logIn = useAuthStore(state => state.logIn)
 
-  const [email, setEmail] = useState("receiver")
-  const [pass, setPass] = useState("receiver")
+  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("")
   const [type, setType] = useState("password")
 
   const onSumbit = () => {
-    if (email === "contributor" && pass === "contributor") {
-      logIn("contributor")
+    login({ email, password }, data => {
       navigate("/dashboard")
-    } else if (email === "receiver" && pass === "receiver") {
-      logIn("receiver")
-      navigate("/dashboard")
-    }
+      logIn(data)
+    })
   }
 
   return (
@@ -50,11 +49,11 @@ function Login() {
             type={type}
             placeholder='Password'
             className='h-10 pr-10 rounded-l-none'
-            value={pass}
-            onChange={e => setPass(e.target.value)}
+            value={password}
+            onChange={e => setPassword(e.target.value)}
           />
-          {type === "password" && <EyeClose className="absolute top-2 right-2 fill-white" onClick={() => setType("text")} />}
-          {type === "text" && <EyeOpen className="absolute top-2 right-2 fill-white" onClick={() => setType("password")} />}
+          {type === "password" && <EyeClose className="absolute top-2 right-2 fill-[#546880]" onClick={() => setType("text")} />}
+          {type === "text" && <EyeOpen className="absolute top-2 right-2 fill-[#546880]" onClick={() => setType("password")} />}
         </div>
 
         <button

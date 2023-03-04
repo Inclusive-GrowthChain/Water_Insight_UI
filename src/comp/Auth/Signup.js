@@ -1,19 +1,43 @@
 import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { signup } from "../../actions/auth/auth";
 import Template from './Template';
 
-function Input({ name = "" }) {
+function Input({ name = "", value = "", onChange = () => { } }) {
   return (
     <input
       type="text"
+      value={value}
       placeholder={name}
       className="mb-4 focus-within:border-slate-900"
+      onChange={e => onChange(e.target.value)}
     />
   )
 }
 
 function Signup() {
-  const [role, setRole] = useState("")
+  const navigate = useNavigate()
+  const [details, setDetails] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    walletId: "",
+    password: "",
+    confirmPassword: "",
+    role: "",
+    phone: "",
+  })
+
+  const onChange = (key, val) => {
+    setDetails(p => ({
+      ...p,
+      [key]: val
+    }))
+  }
+
+  const onSubmit = () => {
+    signup(details, () => navigate("/login"))
+  }
 
   return (
     <Template>
@@ -21,15 +45,40 @@ function Signup() {
         <h1 className="mb-4 text-2xl font-medium text-center">Sign up</h1>
 
         <div className="max-h-[45vh] grid grid-cols-2 gap-2 -mr-6 pr-6 overflow-y-auto">
-          <Input name="First Name" />
-          <Input name="Last Name" />
-          <Input name="Email" />
-          <Input name="Phone" />
-          <Input name="Wallet Id" />
-          <div className="">
+          <Input
+            name="First Name"
+            value={details.firstname}
+            onChange={val => onChange("firstname", val)}
+          />
+
+          <Input
+            name="Last Name"
+            value={details.lastname}
+            onChange={val => onChange("lastname", val)}
+          />
+
+          <Input
+            name="Email"
+            value={details.email}
+            onChange={val => onChange("email", val)}
+          />
+
+          <Input
+            name="Phone"
+            value={details.phone}
+            onChange={val => onChange("phone", val)}
+          />
+
+          <Input
+            name="Wallet Id"
+            value={details.walletId}
+            onChange={val => onChange("walletId", val)}
+          />
+
+          <div>
             <select
-              value={role}
-              onChange={e => setRole(e.target.value)}
+              value={details.role}
+              onChange={e => onChange("role", e.target.value)}
               className="w-full text-sm"
             >
               <option value="" disabled>Role</option>
@@ -37,11 +86,24 @@ function Signup() {
               <option value="Contributor">Contributor</option>
             </select>
           </div>
-          <Input name="Password" />
-          <Input name="Confirm Password" />
+
+          <Input
+            name="Password"
+            value={details.password}
+            onChange={val => onChange("password", val)}
+          />
+
+          <Input
+            name="Confirm Password"
+            value={details.confirmPassword}
+            onChange={val => onChange("confirmPassword", val)}
+          />
         </div>
 
-        <button className='block mt-6 px-12 mx-auto bg-[#01264e] text-white rounded-full hover:opacity-95'>
+        <button
+          className='block mt-6 px-12 mx-auto bg-[#01264e] text-white rounded-full hover:opacity-95'
+          onClick={onSubmit}
+        >
           Sign up
         </button>
       </div>

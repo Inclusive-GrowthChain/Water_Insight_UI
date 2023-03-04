@@ -6,6 +6,7 @@ import { ReactComponent as User } from '../../assets/svg/users/user1.svg';
 import logo from '../../assets/img/logo.png';
 
 import { DropDownWrapper } from '../UIComp/DropDown';
+import { onLogOut } from '../../actions/auth/auth';
 
 function Nav() {
   const navigate = useNavigate()
@@ -15,8 +16,10 @@ function Nav() {
     if (val === "Profile") {
       navigate("/setting")
     } else if (val === 'Log out') {
-      logOut()
-      navigate("/")
+      onLogOut(() => {
+        logOut()
+        navigate("/")
+      })
     }
   }
 

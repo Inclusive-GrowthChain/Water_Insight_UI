@@ -28,7 +28,7 @@ function App() {
   return (
     <Suspense fallback={<Loader wrapperCls='h-screen' />}>
       <Routes>
-        <Route path='/login' element={<Login />} />
+        <Route path='login' element={<Login />} />
         <Route path='signup' element={<Signup />} />
 
         <Route path='/' element={<PrivateRoute comp={<Contributor />} />}>
