@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { getEcoliData } from '../../actions/general/general';
+
 import { ReactComponent as Search } from '../../assets/svg/common/search.svg';
 import { IdBtn, StatusBtn } from './Common/Btns';
 import dummy from './dummy';
@@ -6,7 +9,14 @@ import dummy from './dummy';
 const deviceList = ["Hussain Sagar", "Osman Sagar", "Durgam Cheruvu"]
 
 function EColi() {
+  const { isLoading, data } = useQuery({
+    queryKey: ["ecoli-datas"],
+    queryFn: getEcoliData,
+    retry: false
+  })
   const [device, setDevice] = useState("")
+
+  console.log(isLoading, data)
 
   return (
     <div className="dfc h-full overflow-hidden">

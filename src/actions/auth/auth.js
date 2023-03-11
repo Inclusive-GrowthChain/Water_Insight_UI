@@ -1,6 +1,6 @@
 import sendApiReq, { cookies } from '../../utils/sendApiReq';
-import endPoints from '../../utils/endPoints';
 import { errorNotify } from '../../helper/toastifyHelp';
+import endPoints from '../../utils/endPoints';
 
 const setTokenToApp = token => {
   cookies.set("WaterInshight", token, {
