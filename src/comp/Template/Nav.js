@@ -8,13 +8,13 @@ import logo from '../../assets/img/logo.png';
 import { DropDownWrapper } from '../UIComp/DropDown';
 import { onLogOut } from '../../actions/auth/auth';
 
-function Nav() {
+function Nav({ role }) {
   const navigate = useNavigate()
   const logOut = useAuthStore(state => state.logOut)
 
   const onClk = val => {
     if (val === "Profile") {
-      navigate("/setting")
+      navigate(role ? "/admin/setting" : "/setting")
     } else if (val === 'Log out') {
       onLogOut(() => {
         logOut()

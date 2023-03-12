@@ -24,6 +24,11 @@ const DeviceConfig = lazy(() => import("./comp/Reciever/DeviceConfig"))
 const DeviceData = lazy(() => import("./comp/Reciever/DeviceData"))
 const EColiData = lazy(() => import("./comp/Reciever/EColi"))
 
+const MakePayments = lazy(() => import("./comp/Admin/MakePayments"))
+const ComputeHash = lazy(() => import("./comp/Admin/ComputeHash"))
+const VerifyData = lazy(() => import("./comp/Admin/VerifyData"))
+const Admin = lazy(() => import("./comp/Admin"))
+
 function App() {
   return (
     <Suspense fallback={<Loader wrapperCls='h-screen' />}>
@@ -42,6 +47,14 @@ function App() {
           <Route path='start-test' element={<StartTest />} />
           <Route path='order-list' element={<OrderList />} />
           <Route path='payments' element={<Payments />} />
+          <Route path='support' element={<TemplateSupport />} />
+          <Route path='setting' element={<TemplateSetting />} />
+        </Route>
+
+        <Route path='admin' element={<PrivateRoute comp={<Admin />} />}>
+          <Route path='make-payments' element={<MakePayments />} />
+          <Route path='compute-hash' element={<ComputeHash />} />
+          <Route path='verify-data' element={<VerifyData />} />
           <Route path='support' element={<TemplateSupport />} />
           <Route path='setting' element={<TemplateSetting />} />
         </Route>

@@ -132,6 +132,7 @@ function Signup() {
               className="text-sm focus-within:border-slate-900"
             >
               <option value="" disabled>Role</option>
+              <option value="Admin">Admin</option>
               <option value="Consumer">Consumer</option>
               <option value="Contributor">Contributor</option>
             </select>
