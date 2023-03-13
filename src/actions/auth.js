@@ -1,6 +1,6 @@
-import sendApiReq, { cookies } from '../../utils/sendApiReq';
-import { errorNotify } from '../../helper/toastifyHelp';
-import endPoints from '../../utils/endPoints';
+import sendApiReq, { cookies } from '../utils/sendApiReq';
+import { errorNotify } from '../helper/toastifyHelp';
+import endPoints from '../utils/endPoints';
 
 const setTokenToApp = token => {
   cookies.set("WaterInshight", token, {
@@ -64,8 +64,8 @@ export async function onLogOut(onSuccess) {
 export async function updateProfile(data, onSuccess) {
   try {
     await sendApiReq({
-      method: "patch",
-      url: endPoints.profile,
+      method: "post",
+      url: endPoints.updateProfile,
       data
     })
 

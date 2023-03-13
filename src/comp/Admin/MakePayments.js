@@ -1,9 +1,28 @@
 import { useState } from 'react';
 import DatePicker from "react-datepicker";
+import { payContributor } from '../../actions/admin';
 
 function MakePayments() {
+  const [isLoading, setIsLoading] = useState(false)
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(null)
+
+  const onSuccess = () => {
+    setIsLoading(false)
+    setStartDate(new Date())
+    setEndDate(null)
+  }
+
+  const onError = () => setIsLoading(false)
+
+  const onSubmit = () => {
+    const data = {
+      startDate,
+      endDate
+    }
+    setIsLoading(true)
+    payContributor(data, onSuccess, onError)
+  }
 
   return (
     <section className="dc h-full bg-[#f7f7f7]">
@@ -32,7 +51,11 @@ function MakePayments() {
           />
         </div>
 
-        <button className='theme-btn block mx-auto py-2 px-6'>
+        <button
+          className='theme-btn block mx-auto py-2 px-6'
+          disabled={isLoading}
+          onClick={onSubmit}
+        >
           Make payment
         </button>
       </div>

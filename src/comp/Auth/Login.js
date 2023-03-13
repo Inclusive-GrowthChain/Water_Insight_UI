@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 
-import { login } from '../../actions/auth/auth';
+import { login } from '../../actions/auth';
 import useAuthStore from '../../store/auth';
 
 import { ReactComponent as EyeClose } from '../../assets/svg/common/eye-close.svg';
@@ -26,7 +26,7 @@ function Login() {
 
   const onSumbit = (data) => {
     login(data, res => {
-      navigate(res.role === "Admin" ? "/admin" : "/dashboard")
+      navigate(res.role.toLowerCase() === "admin" ? "/admin" : "/dashboard")
       logIn(res)
     })
   }

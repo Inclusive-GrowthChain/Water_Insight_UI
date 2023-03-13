@@ -38,9 +38,9 @@ const list = [
 ]
 
 function Admin() {
-  const role = useAuthStore(state => state?.userDetails?.role || "Admin")
+  const role = useAuthStore(state => state?.userDetails?.role?.toLowerCase())
 
-  if (role === "Admin") return <AppWrapper role="admin" list={list} />
+  if (role === "admin") return <AppWrapper role="admin" list={list} />
   return <Navigate to="/" replace />
 }
 

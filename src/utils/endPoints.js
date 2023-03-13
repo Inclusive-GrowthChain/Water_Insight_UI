@@ -1,19 +1,24 @@
 export const root = {
-  baseUrl: "https://662e-115-98-183-148.in.ngrok.io/api",
+  baseUrl: "https://5516-115-98-29-60.in.ngrok.io/api",
 }
 
 const endPoints = {
-  login: "/userdata/users/login",
-  signup: "/userdata/users/signup",
-  logout: "/userdata/users/logout",
-  profile: "/userdata/users/me",
+  login: "/user/login",
+  signup: "/user/signup",
+  logout: "/user/logout",
+  profile: "/user/get/profile",
+  updateProfile: "/user/update/profile",
 
   refreshEcoli: "/ecolidata/refresh",
   getEcoliData: "/ecolidata/results",
   refreshImgData: "/devicedata/refresh/", // {email}
   getImgData: "/devicedata/imagedata",
-  getAllOrders: "",
-  createOrder: "",
+  getAllOrders: "/orders/orders",
+  createOrder: "/orders/create",
+
+  payContributor: "/admin/payContributor",
+  computeHash: "/admin/computeHash",
+  verify: "/admin/verify",
 }
 
 export default endPoints

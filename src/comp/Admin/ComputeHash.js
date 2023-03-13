@@ -1,10 +1,31 @@
 import { useState } from 'react';
 import DatePicker from "react-datepicker";
+import { computeHash } from '../../actions/admin';
 
 function ComputeHash() {
+  const [isLoading, setIsLoading] = useState(false)
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(null)
   const [type, setType] = useState("")
+
+  const onSuccess = () => {
+    setIsLoading(false)
+    setStartDate(new Date())
+    setEndDate(null)
+    setType("")
+  }
+
+  const onError = () => setIsLoading(false)
+
+  const onSubmit = () => {
+    const data = {
+      startDate,
+      endDate,
+      type,
+    }
+    setIsLoading(true)
+    computeHash(data, onSuccess, onError)
+  }
 
   return (
     <section className="dc h-full bg-[#f7f7f7]">
@@ -51,7 +72,11 @@ function ComputeHash() {
           </select>
         </div>
 
-        <button className='theme-btn block mx-auto py-2 px-6'>
+        <button
+          className='theme-btn block mx-auto py-2 px-6'
+          disabled={isLoading}
+          onClick={onSubmit}
+        >
           Compute
         </button>
       </div>

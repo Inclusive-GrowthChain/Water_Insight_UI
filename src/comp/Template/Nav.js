@@ -6,7 +6,7 @@ import { ReactComponent as User } from '../../assets/svg/users/user1.svg';
 import logo from '../../assets/img/logo.png';
 
 import { DropDownWrapper } from '../UIComp/DropDown';
-import { onLogOut } from '../../actions/auth/auth';
+import { onLogOut } from '../../actions/auth';
 
 function Nav({ role }) {
   const navigate = useNavigate()

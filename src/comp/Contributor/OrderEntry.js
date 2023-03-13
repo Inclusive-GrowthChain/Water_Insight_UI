@@ -1,13 +1,18 @@
 import { useState } from "react";
+import { createOrder } from "../../actions/general";
+import useAuthStore from "../../store/auth";
 import Input from "../Common/Input";
 
 function OrderEntry() {
+  const email = useAuthStore(st => st.userDetails.email)
+  const [isLoading, setIsLoading] = useState(false)
   const [detail, setDetail] = useState({
+    orderStatus: "unpaid",
     orderDate: new Date().toDateString(),
     startDate: "",
+    dataType: "",
     endDate: "",
-    email: "raj@gmail.com",
-    type: "",
+    email,
   })
 
   const onChange = (key, val) => {
@@ -15,6 +20,25 @@ function OrderEntry() {
       ...p,
       [key]: val
     }))
+  }
+
+  const onSuccess = () => {
+    setIsLoading(false)
+    setDetail({
+      orderStatus: "unpaid",
+      orderDate: new Date().toDateString(),
+      startDate: "",
+      dataType: "",
+      endDate: "",
+      email,
+    })
+  }
+
+  const onError = () => setIsLoading(false)
+
+  const onSubmit = () => {
+    setIsLoading(true)
+    createOrder(detail, onSuccess, onError)
   }
 
   return (
@@ -29,10 +53,10 @@ function OrderEntry() {
         <select
           name=""
           id="data-type"
-          value={detail.type}
+          value={detail.dataType}
           onChange={e => setDetail(p => ({
             ...p,
-            type: e.target.value
+            dataType: e.target.value
           }))}
           className="text-sm focus-within:border-slate-900 disabled:bg-gray-50"
         >
@@ -75,7 +99,11 @@ function OrderEntry() {
         disabled
       />
 
-      <button className="theme-btn grid-col-full mx-auto px-12">
+      <button
+        className="theme-btn grid-col-full mx-auto px-12 disabled:opacity-50"
+        disabled={isLoading}
+        onClick={onSubmit}
+      >
         Submit
       </button>
     </section>

@@ -81,11 +81,11 @@ const list = [
 const onlyForContributor = ["payments", "device-config", "my-contribution"]
 
 function Contributor() {
-  const role = useAuthStore(state => state?.userDetails?.role || "")
+  const role = useAuthStore(state => state?.userDetails?.role?.toLowerCase() || "")
 
-  const final = role === "Contributor" ? list : list.filter(l => !onlyForContributor.includes(l.to))
+  const final = role === "contributor" ? list : list.filter(l => !onlyForContributor.includes(l.to))
 
-  if (role === "Admin") return <Navigate to="/admin" replace />
+  if (role === "admin") return <Navigate to="/admin" replace />
   return <AppWrapper list={final} />
 }
 

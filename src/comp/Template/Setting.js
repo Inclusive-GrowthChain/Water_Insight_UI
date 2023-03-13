@@ -1,5 +1,5 @@
 import { useId, useState } from 'react';
-import { updateProfile } from '../../actions/auth/auth';
+import { updateProfile } from '../../actions/auth';
 import useAuthStore from '../../store/auth';
 
 import { ReactComponent as User } from '../../assets/svg/users/user.svg';

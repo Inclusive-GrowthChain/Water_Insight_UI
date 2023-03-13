@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 
-import { signup } from "../../actions/auth/auth";
+import { signup } from "../../actions/auth";
 import Template from './Template';
 
 function Signup() {
