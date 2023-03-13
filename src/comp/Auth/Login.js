@@ -26,7 +26,7 @@ function Login() {
 
   const onSumbit = (data) => {
     login(data, res => {
-      navigate("/dashboard")
+      navigate(res.role === "Admin" ? "/admin" : "/dashboard")
       logIn(res)
     })
   }
