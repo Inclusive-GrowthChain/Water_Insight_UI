@@ -7,7 +7,6 @@ import { ReactComponent as Support } from '../../assets/svg/common/support.svg';
 import { ReactComponent as Payment } from '../../assets/svg/common/payment.svg';
 // import { ReactComponent as Test } from '../../assets/svg/common/test.svg';
 import { ReactComponent as Router } from '../../assets/svg/common/router.svg';
-import { ReactComponent as Config } from '../../assets/svg/common/config.svg';
 import { ReactComponent as Brand } from '../../assets/svg/common/brand-sentry.svg';
 import { ReactComponent as Chart } from '../../assets/svg/common/chart.svg';
 import { ReactComponent as List } from '../../assets/svg/common/list.svg';
@@ -40,11 +39,6 @@ const list = [
     title: "E.coli Data",
     icon: <ChartLine className="app-sb-ic-fill" />,
     to: '/e-coli-data'
-  },
-  {
-    title: "Device Config",
-    icon: <Config className="app-sb-ic-fill rotate-90" />,
-    to: '/device-config'
   },
   {
     icon: <User className="w-5 h-5 app-sb-ic-fill" />,

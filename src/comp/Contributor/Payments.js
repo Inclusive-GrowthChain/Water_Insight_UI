@@ -1,19 +1,19 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import DatePicker from "react-datepicker";
+
+import { getAllPaymentss } from '../../actions/general';
+
 import "react-datepicker/dist/react-datepicker.css";
-
-import createArr from '../../helper/createArr';
-import getRandom from '../../helper/getRandom';
-
-const data = createArr(20).map(t => ({
-  paymentId: `${getRandom(100, 1000)}-${getRandom(100, 1000)}`,
-  amount: getRandom(10, 100) * 100,
-  date: "12-12-22",
-}))
+import Loader from '../Common/Loader';
 
 function Payments() {
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
+  const { isLoading, data } = useQuery({
+    queryKey: ["payments"],
+    queryFn: getAllPaymentss,
+  })
 
   const onChange = ([start, end]) => {
     setStartDate(start)
@@ -40,27 +40,30 @@ function Payments() {
       </div>
 
       <div className='scroll-y max-w-2xl mx-auto mb-2 overflow-x-auto'>
-        <table className='w-full table-fixed'>
-          <thead>
-            <tr className='sticky top-0 text-[15px] font-medium bg-slate-200 text-left shadow-sm'>
-              <td className='w-36 p-2 pl-4'>Payment Id</td>
-              <td className='w-28 p-2'>Date</td>
-              <td className='w-28 p-2'>Amount</td>
-            </tr>
-          </thead>
-
-          <tbody>
-            {
-              data.map(d => (
-                <tr key={d.paymentId} className='text-sm even:bg-slate-100'>
-                  <td className='p-2 pl-4'>{d.paymentId}</td>
-                  <td className='p-2'>{d.date}</td>
-                  <td className='p-2'>{d.amount}</td>
+        {
+          isLoading ? <Loader wrapperCls='h-full' /> :
+            <table className='w-full table-fixed'>
+              <thead>
+                <tr className='sticky top-0 text-[15px] font-medium bg-slate-200 text-left shadow-sm'>
+                  <td className='w-36 p-2 pl-4'>Payment Id</td>
+                  <td className='w-28 p-2'>Date</td>
+                  <td className='w-28 p-2'>Amount</td>
                 </tr>
-              ))
-            }
-          </tbody>
-        </table>
+              </thead>
+
+              <tbody>
+                {
+                  data.data.map(d => (
+                    <tr key={d.paymentId} className='text-sm even:bg-slate-100'>
+                      <td className='p-2 pl-4'>{d.paymentId}</td>
+                      <td className='p-2'>{new Date(d.DateOfPayment).toLocaleDateString()}</td>
+                      <td className='p-2'>{d.paymentAmount}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+        }
       </div>
     </section>
   )

@@ -38,7 +38,6 @@ function App() {
 
         <Route path='/' element={<PrivateRoute comp={<Contributor />} />}>
           <Route path='satellite-data' element={<SatelliteData />} />
-          <Route path='device-config' element={<DeviceConfig />} />
           <Route path='device-data' element={<DeviceData />} />
           <Route path='e-coli-data' element={<EColiData />} />
           <Route path='dashboard' element={<RecieverDashBoard />} />
@@ -52,6 +51,7 @@ function App() {
         </Route>
 
         <Route path='admin' element={<PrivateRoute comp={<Admin />} />}>
+          <Route path='device-config' element={<DeviceConfig />} />
           <Route path='make-payments' element={<MakePayments />} />
           <Route path='compute-hash' element={<ComputeHash />} />
           <Route path='verify-data' element={<VerifyData />} />

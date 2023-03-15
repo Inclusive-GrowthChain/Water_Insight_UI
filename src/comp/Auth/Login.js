@@ -17,8 +17,8 @@ function Login() {
 
   const { register, formState: { errors }, handleSubmit } = useForm({
     defaultValues: {
-      email: "",
-      password: "",
+      email: "igcatisb@gmail.com",
+      password: "simplepass",
     },
   })
 

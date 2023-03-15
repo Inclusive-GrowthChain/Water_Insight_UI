@@ -78,7 +78,7 @@ function EColi() {
                       <td className='px-4 py-2'>{d?.StartedValue}</td>
                       <td className='px-4 py-2'>{d?.EndedValue}</td>
                       <td className='px-4 py-2'>{d?.percentage}</td>
-                      <td className='px-4 py-2'>{new Date(d?.Date).toDateString()}</td>
+                      <td className='px-4 py-2'>{new Date(d?.Date).toLocaleDateString()}</td>
                       <td className='px-4 py-2'>
                         <StatusBtn type={d?.status} />
                       </td>

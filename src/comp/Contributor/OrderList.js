@@ -6,7 +6,6 @@ function OrderList() {
   const { isLoading, data } = useQuery({
     queryKey: ["order-list"],
     queryFn: getAllOrders,
-    retry: false
   })
 
   console.log(data)
@@ -36,9 +35,9 @@ function OrderList() {
                   data.data.map(d => (
                     <tr key={d._id} className='text-sm even:bg-slate-100'>
                       <td className='p-2 pl-4'>{d.id}</td>
-                      <td className='p-2'>{new Date(d?.startDate).toDateString()}</td>
-                      <td className='p-2'>{new Date(d?.endDate).toDateString()}</td>
-                      <td className='p-2'>{new Date(d?.orderDate).toDateString()}</td>
+                      <td className='p-2'>{new Date(d?.startDate).toLocaleDateString()}</td>
+                      <td className='p-2'>{new Date(d?.endDate).toLocaleDateString()}</td>
+                      <td className='p-2'>{new Date(d?.orderDate).toLocaleDateString()}</td>
                       <td className={`p-2 capitalize ${d.orderStatus === "Failed" ? "text-red-400" : d.orderStatus === "Success" ? "text-green-400" : "text-yellow-300"}`}>
                         {d.orderStatus}
                       </td>

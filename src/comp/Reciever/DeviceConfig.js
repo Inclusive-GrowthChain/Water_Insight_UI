@@ -7,6 +7,7 @@ function DeviceConfig() {
   const [deviceId, setDeviceId] = useState("")
   const [country, setCountry] = useState("")
   const [state, setState] = useState("")
+  const [email, setEmail] = useState("")
 
   return (
     <div className="dfc h-full overflow-hidden">
@@ -29,6 +30,16 @@ function DeviceConfig() {
             type="text"
             value={deviceId}
             onChange={e => setDeviceId(e.target.value)}
+          />
+        </div>
+
+        <div className='mb-3'>
+          <label className='mb-0.5 font-medium' htmlFor="Email">Email</label>
+          <input
+            id='Email'
+            type="text"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
           />
         </div>
 

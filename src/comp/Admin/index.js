@@ -6,10 +6,16 @@ import { ReactComponent as Checkbox } from '../../assets/svg/common/checkbox.svg
 import { ReactComponent as Setting } from '../../assets/svg/common/setting.svg';
 import { ReactComponent as Support } from '../../assets/svg/common/support.svg';
 import { ReactComponent as Payment } from '../../assets/svg/common/payment.svg';
+import { ReactComponent as Config } from '../../assets/svg/common/config.svg';
 import { ReactComponent as Cpu } from '../../assets/svg/common/cpu.svg';
 import AppWrapper from "../Template/AppWrapper";
 
 const list = [
+  {
+    title: "Device Config",
+    icon: <Config className="app-sb-ic-fill rotate-90" />,
+    to: '/device-config'
+  },
   {
     icon: <Payment className="w-5 h-5 app-sb-ic-stroke" />,
     title: "Make Payments",

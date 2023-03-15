@@ -1,5 +1,5 @@
 export const root = {
-  baseUrl: "https://5516-115-98-29-60.in.ngrok.io/api",
+  baseUrl: "https://0a85-122-186-147-146.in.ngrok.io/api",
 }
 
 const endPoints = {
@@ -8,6 +8,7 @@ const endPoints = {
   logout: "/user/logout",
   profile: "/user/get/profile",
   updateProfile: "/user/update/profile",
+  getAllPayments: "/user/getpayments",
 
   refreshEcoli: "/ecolidata/refresh",
   getEcoliData: "/ecolidata/results",
@@ -15,6 +16,7 @@ const endPoints = {
   getImgData: "/devicedata/imagedata",
   getAllOrders: "/orders/orders",
   createOrder: "/orders/create",
+  contributions: "/contributions",
 
   payContributor: "/admin/payContributor",
   computeHash: "/admin/computeHash",

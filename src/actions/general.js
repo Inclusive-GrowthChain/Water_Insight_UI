@@ -38,3 +38,17 @@ export async function createOrder(data, onSuccess, onError) {
     errorNotify()
   }
 }
+
+export async function getAllContributions() {
+  return sendApiReq({
+    url: endPoints.contributions,
+    method: "post",
+  })
+}
+
+export async function getAllPaymentss() {
+  return sendApiReq({
+    url: endPoints.getAllPayments,
+    method: "post",
+  })
+}

@@ -8,7 +8,7 @@ function OrderEntry() {
   const [isLoading, setIsLoading] = useState(false)
   const [detail, setDetail] = useState({
     orderStatus: "unpaid",
-    orderDate: new Date().toDateString(),
+    orderDate: new Date().toLocaleDateString(),
     startDate: "",
     dataType: "",
     endDate: "",
@@ -26,7 +26,7 @@ function OrderEntry() {
     setIsLoading(false)
     setDetail({
       orderStatus: "unpaid",
-      orderDate: new Date().toDateString(),
+      orderDate: new Date().toLocaleDateString(),
       startDate: "",
       dataType: "",
       endDate: "",
