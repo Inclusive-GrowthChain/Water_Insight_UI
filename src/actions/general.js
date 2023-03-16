@@ -9,8 +9,25 @@ export async function getEcoliData() {
   })
 }
 
-export async function getImgData() {
-  return sendApiReq({ url: endPoints.getImgData })
+export async function refreshEcoliData() {
+  return sendApiReq({
+    url: endPoints.refreshEcoli,
+    method: "post",
+  })
+}
+
+export async function getDeviceData() {
+  return sendApiReq({
+    url: endPoints.getDeviceData,
+    method: "post",
+  })
+}
+
+export async function refreshDeviceData(email) {
+  return sendApiReq({
+    url: endPoints.refreshDeviceData + email,
+    method: "post",
+  })
 }
 
 export async function getAllOrders() {
@@ -52,3 +69,19 @@ export async function getAllPaymentss() {
     method: "post",
   })
 }
+
+
+// {
+//   "_id": "641164624b242a000b6a906a",
+//   "uniqueMessageId": "18682f690966d3b8",
+//   "Date": "2023-02-24T10:27:21.000Z",
+//   "__v": 0,
+//   "deviceId": "igcatisb@gmail.com",
+//   "fileName": "18682f690966d3b8photo.jpg",
+//   "hash": "59905b98b0862d2e73ad5b374e10208467b86170695ecb4462a53c6609e90b85",
+//   "message": "Photo captured with ESP32-CAM and attached in this email.",
+//   "subject": "ESP32-CAM Photo Captured",
+//   "verifyId": 8195,
+//   "K_mean_RG": 2.607180028192449,
+//   "Turbidity": 10.064256324631863
+// }

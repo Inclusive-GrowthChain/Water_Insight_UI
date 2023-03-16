@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { getEcoliData } from '../../actions/general';
+import { getEcoliData, refreshEcoliData } from '../../actions/general';
 import getRandom from "../../helper/getRandom";
 
 import { ReactComponent as Search } from '../../assets/svg/common/search.svg';
@@ -10,11 +10,19 @@ import Loader from '../Common/Loader';
 const deviceList = ["Hussain Sagar", "Osman Sagar", "Durgam Cheruvu"]
 
 function EColi() {
-  const { isLoading, data } = useQuery({
+  const { isLoading, data, refetch } = useQuery({
     queryKey: ["ecoli-datas"],
-    queryFn: getEcoliData,
-    retry: false
+    queryFn: getEcoliData
   })
+  const { refetch: refresh } = useQuery({
+    queryFn: refreshEcoliData,
+    queryKey: ["refresh-ecoli-data"],
+    enabled: false,
+    onSuccess: () => {
+      refetch()
+    }
+  })
+
   const [device, setDevice] = useState("")
 
   return (
@@ -23,6 +31,13 @@ function EColi() {
         <h1 className='mr-auto text-2xl font-medium'>
           Coliform Test Result <span className='text-sm text-gray-600'>(12/12/20 - 01/03/23)</span>
         </h1>
+
+        <button
+          className="text-sm bg-[#D9D9D9]"
+          onClick={refresh}
+        >
+          Refresh
+        </button>
       </div>
 
       <div className="df px-4">
@@ -48,8 +63,7 @@ function EColi() {
 
       <div className="px-4 mt-4 scroll-y h-full overflow-x-auto">
         {
-          isLoading ?
-            <Loader wrapperCls='h-full' /> :
+          isLoading ? <Loader wrapperCls='h-full' /> :
             <table className='table-fixed w-full'>
               <thead>
                 <tr className='sticky top-0 bg-white shadow-sm font-medium text-[#809FB8] border-b'>

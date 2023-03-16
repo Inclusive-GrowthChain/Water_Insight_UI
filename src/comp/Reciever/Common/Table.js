@@ -1,7 +1,7 @@
 import { IdBtn, StatusBtn } from './Btns';
 import dummy from '../dummy';
 
-function Table({ firstCol = "", value = "" }) {
+function Table({ data = dummy, firstCol = "", value = "" }) {
   return (
     <table className='table-fixed w-full'>
       <thead>
@@ -23,9 +23,11 @@ function Table({ firstCol = "", value = "" }) {
 
       <tbody>
         {
-          dummy.map(d => (
-            <tr key={d.id} className="text-sm border-b">
-              <td className='px-4 py-2 text-center'><IdBtn id={d.id} type={d.status} /></td>
+          data.map(d => (
+            <tr key={d._id} className="text-sm border-b">
+              <td className='px-4 py-2 text-center'>
+                {/* <IdBtn id={d.id} type={d.status} /> */}
+              </td>
               <td className='px-4 py-2'>{d[firstCol]}</td>
               {
                 firstCol !== "lakeName" &&

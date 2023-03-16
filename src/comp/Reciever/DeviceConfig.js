@@ -9,6 +9,10 @@ function DeviceConfig() {
   const [state, setState] = useState("")
   const [email, setEmail] = useState("")
 
+  const onSubmit = () => {
+
+  }
+
   return (
     <div className="dfc h-full overflow-hidden">
       <div className="df gap-6 p-4 pb-2">
@@ -61,7 +65,11 @@ function DeviceConfig() {
           onChange={setTestingAreaType}
           optionsList={list}
         />
-        <button className=' theme-btn'>
+
+        <button
+          className='theme-btn col-start-1'
+          onClick={onSubmit}
+        >
           Save
         </button>
       </div>

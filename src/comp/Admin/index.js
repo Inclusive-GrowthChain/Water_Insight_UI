@@ -14,7 +14,7 @@ const list = [
   {
     title: "Device Config",
     icon: <Config className="app-sb-ic-fill rotate-90" />,
-    to: '/device-config'
+    to: '/admin/device-config'
   },
   {
     icon: <Payment className="w-5 h-5 app-sb-ic-stroke" />,
