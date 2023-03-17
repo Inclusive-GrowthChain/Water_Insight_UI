@@ -19,6 +19,7 @@ const endPoints = {
   contributions: "/contributions",
 
   payContributor: "/admin/payContributor",
+  deviveConfig: "/admin/devices",
   computeHash: "/admin/computeHash",
   verify: "/admin/verify",
 }

@@ -58,3 +58,22 @@ export async function verify(data, onSuccess, onError) {
     errorNotify()
   }
 }
+
+export async function deviceConfig(data, onSuccess, onError) {
+  try {
+    const res = await sendApiReq({
+      method: "post",
+      url: endPoints.deviveConfig,
+      data
+    })
+
+    console.log(res)
+
+    successNotify("Device config added successfully")
+    onSuccess()
+  } catch (error) {
+    console.log(error)
+    onError()
+    errorNotify()
+  }
+}

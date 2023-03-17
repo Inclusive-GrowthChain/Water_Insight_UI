@@ -1,16 +1,31 @@
 import { useState } from 'react';
-import SelectBox from './Common/SelectBox';
+import { deviceConfig } from '../../actions/admin';
+import SelectBox from '../Reciever/Common/SelectBox';
 
 const list = ["Freshwater Lake", "Sewer", "Household", "Industrial water", "Other"]
 function DeviceConfig() {
   const [testingAreaType, setTestingAreaType] = useState("Other")
+  const [isLoading, setIsLoading] = useState("")
   const [deviceId, setDeviceId] = useState("")
   const [country, setCountry] = useState("")
   const [state, setState] = useState("")
   const [email, setEmail] = useState("")
 
   const onSubmit = () => {
-
+    if (deviceId && country && state && email) {
+      setIsLoading(true)
+      deviceConfig(
+        {
+          testingAreaType,
+          deviceId,
+          country,
+          state,
+          email,
+        },
+        () => setIsLoading(false),
+        () => setIsLoading(false),
+      )
+    }
   }
 
   return (
@@ -68,6 +83,7 @@ function DeviceConfig() {
 
         <button
           className='theme-btn col-start-1'
+          disabled={isLoading}
           onClick={onSubmit}
         >
           Save

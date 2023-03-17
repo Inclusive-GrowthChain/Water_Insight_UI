@@ -20,10 +20,10 @@ const Contributor = lazy(() => import("./comp/Contributor"))
 
 const RecieverDashBoard = lazy(() => import("./comp/Reciever/DashBoard"))
 const SatelliteData = lazy(() => import("./comp/Reciever/SatelliteData"))
-const DeviceConfig = lazy(() => import("./comp/Reciever/DeviceConfig"))
 const DeviceData = lazy(() => import("./comp/Reciever/DeviceData"))
 const EColiData = lazy(() => import("./comp/Reciever/EColi"))
 
+const DeviceConfig = lazy(() => import("./comp/Admin/DeviceConfig"))
 const MakePayments = lazy(() => import("./comp/Admin/MakePayments"))
 const ComputeHash = lazy(() => import("./comp/Admin/ComputeHash"))
 const VerifyData = lazy(() => import("./comp/Admin/VerifyData"))
