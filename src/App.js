@@ -18,10 +18,14 @@ const OrderList = lazy(() => import("./comp/Contributor/OrderList"))
 const Payments = lazy(() => import("./comp/Contributor/Payments"))
 const Contributor = lazy(() => import("./comp/Contributor"))
 
-const RecieverDashBoard = lazy(() => import("./comp/Reciever/DashBoard"))
+const AllProjects = lazy(() => import('./comp/Contributor/DAO/AllProjects'))
+const MyProjects = lazy(() => import('./comp/Contributor/DAO/MyProjects'))
+const DAO = lazy(() => import('./comp/Contributor/DAO'))
+
 const SatelliteData = lazy(() => import("./comp/Reciever/SatelliteData"))
 const DeviceData = lazy(() => import("./comp/Reciever/DeviceData"))
 const EColiData = lazy(() => import("./comp/Reciever/EColi"))
+const DashBoard = lazy(() => import("./comp/Reciever/DashBoard"))
 
 const DeviceConfig = lazy(() => import("./comp/Admin/DeviceConfig"))
 const MakePayments = lazy(() => import("./comp/Admin/MakePayments"))
@@ -37,17 +41,22 @@ function App() {
         <Route path='signup' element={<Signup />} />
 
         <Route path='/' element={<PrivateRoute comp={<Contributor />} />}>
+          <Route path='my-contribution' element={<MyContribution />} />
           <Route path='satellite-data' element={<SatelliteData />} />
           <Route path='device-data' element={<DeviceData />} />
           <Route path='e-coli-data' element={<EColiData />} />
-          <Route path='dashboard' element={<RecieverDashBoard />} />
-          <Route path='my-contribution' element={<MyContribution />} />
           <Route path='order-entry' element={<OrderEntry />} />
           <Route path='start-test' element={<StartTest />} />
           <Route path='order-list' element={<OrderList />} />
+          <Route path='dashboard' element={<DashBoard />} />
           <Route path='payments' element={<Payments />} />
           <Route path='support' element={<TemplateSupport />} />
           <Route path='setting' element={<TemplateSetting />} />
+
+          <Route path='dao' element={<DAO />}>
+            <Route index element={<AllProjects />} />
+            <Route path='my-projects' element={<MyProjects />} />
+          </Route>
         </Route>
 
         <Route path='admin' element={<PrivateRoute comp={<Admin />} />}>

@@ -12,6 +12,7 @@ import { ReactComponent as Chart } from '../../assets/svg/common/chart.svg';
 import { ReactComponent as List } from '../../assets/svg/common/list.svg';
 import { ReactComponent as User } from '../../assets/svg/users/user.svg';
 import { ReactComponent as Home } from '../../assets/svg/common/home.svg';
+import { ReactComponent as DAO } from '../../assets/svg/common/dao.svg';
 import AppWrapper from "../Template/AppWrapper";
 
 const list = [
@@ -61,6 +62,11 @@ const list = [
     to: '/order-list'
   },
   {
+    icon: <DAO className="w-5 h-5 app-sb-ic-fill" />,
+    title: "DAO",
+    to: '/dao'
+  },
+  {
     title: "Support",
     icon: <Support className="app-sb-ic-fill" />,
     to: '/support'
@@ -72,10 +78,10 @@ const list = [
   },
 ]
 
-const onlyForContributor = ["payments", "device-config", "my-contribution"]
+const onlyForContributor = ["/payments", "/device-config", "/my-contribution", "/dao"]
 
 function Contributor() {
-  const role = useAuthStore(state => state?.userDetails?.role?.toLowerCase() || "")
+  const role = useAuthStore(state => state?.userDetails?.role?.toLowerCase() || "contributor")
 
   const final = role === "contributor" ? list : list.filter(l => !onlyForContributor.includes(l.to))
 
