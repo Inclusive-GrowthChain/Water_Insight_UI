@@ -8,6 +8,7 @@ import { ReactComponent as Support } from '../../assets/svg/common/support.svg';
 import { ReactComponent as Payment } from '../../assets/svg/common/payment.svg';
 import { ReactComponent as Config } from '../../assets/svg/common/config.svg';
 import { ReactComponent as Cpu } from '../../assets/svg/common/cpu.svg';
+import { ReactComponent as DAO } from '../../assets/svg/common/dao.svg';
 import AppWrapper from "../Template/AppWrapper";
 
 const list = [
@@ -32,6 +33,11 @@ const list = [
     to: '/admin/verify-data'
   },
   {
+    icon: <DAO className="w-5 h-5 app-sb-ic-fill" />,
+    title: "DAO",
+    to: '/admin/dao'
+  },
+  {
     title: "Support",
     icon: <Support className="app-sb-ic-fill" />,
     to: '/admin/support'
@@ -44,7 +50,7 @@ const list = [
 ]
 
 function Admin() {
-  const role = useAuthStore(state => state?.userDetails?.role?.toLowerCase())
+  const role = useAuthStore(state => state?.userDetails?.role?.toLowerCase() || "admin")
 
   if (role === "admin") return <AppWrapper role="admin" list={list} />
   return <Navigate to="/" replace />

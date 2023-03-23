@@ -1,5 +1,5 @@
 export const root = {
-  baseUrl: "https://0e07-115-99-192-223.in.ngrok.io/api",
+  baseUrl: "https://da67-122-186-147-146.in.ngrok.io/api",
 }
 
 const endPoints = {
@@ -22,6 +22,12 @@ const endPoints = {
   deviveConfig: "/admin/devices",
   computeHash: "/admin/computeHash",
   verify: "/admin/verify",
+
+  getHash: "/dao/getHash",
+  createProject: "/dao/createProject",
+  createStake: "/dao/createStake",
+  // createStake: "/dao/",
+  // createStake: "/dao/",
 }
 
 export default endPoints

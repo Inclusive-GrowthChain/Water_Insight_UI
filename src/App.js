@@ -40,7 +40,10 @@ function App() {
         <Route path='login' element={<Login />} />
         <Route path='signup' element={<Signup />} />
 
-        <Route path='/' element={<PrivateRoute comp={<Contributor />} />}>
+        <Route path='/' element={
+          // <Contributor />
+          <PrivateRoute comp={<Contributor />} />
+        }>
           <Route path='my-contribution' element={<MyContribution />} />
           <Route path='satellite-data' element={<SatelliteData />} />
           <Route path='device-data' element={<DeviceData />} />
@@ -53,19 +56,26 @@ function App() {
           <Route path='support' element={<TemplateSupport />} />
           <Route path='setting' element={<TemplateSetting />} />
 
-          <Route path='dao' element={<DAO />}>
-            <Route index element={<AllProjects />} />
+          <Route path='dao' element={<DAO role="contributor" />}>
+            <Route index element={<AllProjects role="contributor" />} />
             <Route path='my-projects' element={<MyProjects />} />
           </Route>
         </Route>
 
-        <Route path='admin' element={<PrivateRoute comp={<Admin />} />}>
+        <Route path='admin' element={
+          // <Admin />
+          <PrivateRoute comp={<Admin />} />
+        }>
           <Route path='device-config' element={<DeviceConfig />} />
           <Route path='make-payments' element={<MakePayments />} />
           <Route path='compute-hash' element={<ComputeHash />} />
           <Route path='verify-data' element={<VerifyData />} />
           <Route path='support' element={<TemplateSupport />} />
           <Route path='setting' element={<TemplateSetting />} />
+
+          <Route path='dao' element={<DAO role="admin" />}>
+            <Route index element={<AllProjects role="admin" />} />
+          </Route>
         </Route>
       </Routes>
     </Suspense>

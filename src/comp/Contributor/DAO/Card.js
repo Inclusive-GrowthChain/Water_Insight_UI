@@ -1,16 +1,19 @@
 import { useRef, useState } from 'react';
+import { createStake } from '../../../actions/dao';
 import { ReactComponent as Arrow } from '../../../assets/svg/arrows/dropdown.svg';
 import { ReactComponent as Clock } from '../../../assets/svg/common/clock.svg';
 import CloseDao from '../Modals/CloseDao';
 import VoteBtn from './VoteBtn';
 
 function Card({
-  title, summary, fundingTarget,
-  minimumStakingAmount, closingTime,
-  description, votingThreshold, isMine, isClosed,
+  id, role, title, summary, fundingTarget,
+  minimumStakeAmount: minimumStakingAmount, closeTime: closingTime,
+  description, isMine, isClosed,
 }) {
+  const [isStaking, setIsStaking] = useState(false)
   const [active, setActive] = useState(false)
   const [height, setHeight] = useState(0)
+  const [stake, setStake] = useState("")
   const [open, setOpen] = useState(false)
   const panelRef = useRef(null)
 
@@ -21,31 +24,52 @@ function Card({
 
   const updateOpen = () => setOpen(p => !p)
 
+  const onSubmitState = () => {
+    if (stake) {
+      // setIsStaking(true)
+      const onSuccess = () => setIsStaking(false)
+
+      window.ethereum.request({ method: 'eth_requestAccounts' })
+        .then(res => {
+          createStake(
+            {
+              walletId: res,
+              projectId: id,
+              stakeAmount: stake
+            },
+            onSuccess
+          )
+        })
+
+    }
+  }
+
   return (
     <div className='p-6 max-w-xl mx-auto mb-4 border shadow rounded-lg hover:shadow-intensed cursor-pointer'>
       <div className="df">
         <div className='font-semibold'>{title}</div>
         <div className="df gap-1 ml-auto text-sm">
           {
-            isClosed ? "Closed" :
+            isClosed ? "Succeed" :
               <>
                 <Clock className="w-4 h-4 stroke-slate-900" />
-                {closingTime}
+                {new Date(closingTime).toLocaleString()}
               </>
           }
 
           {
-            !isClosed && (
-              isMine ?
-                <button
-                  className="ml-1 p-2 py-1 text-sm text-white bg-red-400 hover:bg-red-500"
-                  onClick={updateOpen}
-                >
-                  Close
-                </button>
-                :
-                <VoteBtn />
-            )
+            !isClosed && !isMine && role !== "admin" &&
+            <VoteBtn id={id} />
+          }
+
+          {
+            !isClosed && role === "admin" &&
+            <button
+              className="ml-1 p-2 py-1 text-sm text-white bg-red-400 hover:bg-red-500"
+              onClick={updateOpen}
+            >
+              Close
+            </button>
           }
         </div>
       </div>
@@ -73,14 +97,20 @@ function Card({
 
       <div className='df items-end mt-5'>
         {
-          !isClosed && !isMine &&
+          !isClosed && !isMine && role !== "admin" &&
           <div className='df gap-1'>
             <input
-              type="text"
-              className='max-w-xs py-1 rounded-sm focus:border-primary-600'
+              type="number"
+              className='no-number-arrows max-w-xs py-1 rounded-sm focus:border-primary-300'
               placeholder='Stake amount'
+              value={stake}
+              onChange={e => setStake(e.target.value)}
             />
-            <button className='px-2 py-1.5 text-xs text-white bg-teal-700 rounded-sm'>
+            <button
+              className='px-2 py-1.5 text-xs text-white bg-teal-700 rounded-sm'
+              onClick={onSubmitState}
+              disabled={isStaking}
+            >
               Stake
             </button>
           </div>

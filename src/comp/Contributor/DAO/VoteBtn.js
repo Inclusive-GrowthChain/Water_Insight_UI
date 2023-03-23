@@ -3,7 +3,7 @@ import { offset, autoUpdate, useFloating, shift, arrow } from '@floating-ui/reac
 import { ReactComponent as Close } from '../../../assets/svg/common/circle-wrong.svg';
 import { ReactComponent as Thumb } from '../../../assets/svg/common/thumb-up.svg';
 
-function VoteBtn() {
+function VoteBtn({ id }) {
   const [isOpen, setIsOpen] = useState(false)
   const arrowRef = useRef()
 
@@ -40,6 +40,11 @@ function VoteBtn() {
     return final
   }, [placement, strategy, x, y, arrowX, arrowY])
 
+  const voteIt = val => {
+    console.log(val)
+    setIsOpen(false)
+  }
+
   return (
     <div className="relative">
       <button
@@ -61,17 +66,26 @@ function VoteBtn() {
           }}
           className="df gap-6 px-6 py-2 bg-white rounded shadow-light border"
         >
-          <button className='dfc gap-0 items-center p-0 hover:text-green-500 group'>
+          <button
+            className='dfc gap-0 items-center p-0 hover:text-green-500 group'
+            onClick={() => voteIt("For")}
+          >
             <Thumb className="w-5 h-5 group-hover:fill-green-500" />
             For
           </button>
 
-          <button className='dfc gap-0 items-center p-0 hover:text-red-500 group'>
+          <button
+            className='dfc gap-0 items-center p-0 hover:text-red-500 group'
+            onClick={() => voteIt("Against")}
+          >
             <Thumb className="w-5 h-5 group-hover:fill-red-500" style={{ transform: "rotateX(180deg)" }} />
             Against
           </button>
 
-          <button className='dfc gap-0 items-center p-0 hover:text-yellow-500 group'>
+          <button
+            className='dfc gap-0 items-center p-0 hover:text-yellow-500 group'
+            onClick={() => voteIt("Abstain")}
+          >
             <Close className="w-5 h-5 group-hover:fill-yellow-500" />
             Abstain
           </button>

@@ -14,7 +14,7 @@ const dummy = [1, 2, 3, 4, 5].map((a, i) => ({
 }))
 
 function MyProjects() {
-  return dummy.map(a => <Card {...a} />)
+  return dummy.map(a => <Card {...a} role="contributor" />)
 }
 
 export default MyProjects

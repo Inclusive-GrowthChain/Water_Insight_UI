@@ -1,8 +1,13 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
+import { createProject } from '../../../actions/dao';
+import { errorNotify } from '../../../helper/toastifyHelp';
 import Input from '../../Common/Input';
 import Modal from '../../UIComp/Modal';
 
 function CreateDao({ closeModal }) {
+  const queryClient = useQueryClient()
+  const [loading, setLoading] = useState(false)
   const [details, setDetails] = useState({
     title: "",
     summary: "",
@@ -20,10 +25,33 @@ function CreateDao({ closeModal }) {
     }))
   }
 
+  const onSubmit = async () => {
+    if (
+      !details.title ||
+      !details.summary ||
+      !details.description ||
+      !details.fundingTarget ||
+      !details.minimumStakingAmount ||
+      !details.votingThreshold ||
+      !details.closingTime
+    ) {
+      return errorNotify("All fields are required.")
+    }
+
+    setLoading(true)
+    const onSuccess = () => {
+      queryClient.invalidateQueries(["projects"])
+      setLoading(false)
+      closeModal()
+    }
+
+    createProject(details, onSuccess, () => setLoading(false))
+  }
+
   return (
     <Modal
       isOpen
-      title='Create '
+      title='Create DAO Project'
       closeModal={closeModal}
     >
       <div className='grid grid-cols-2 gap-6'>
@@ -59,6 +87,7 @@ function CreateDao({ closeModal }) {
 
         <Input
           name='Closing Time'
+          type='date'
           value={details["closingTime"]}
           onChange={val => onChange("closingTime", val)}
         />
@@ -77,7 +106,11 @@ function CreateDao({ closeModal }) {
         </div>
 
         <div className='dc col-span-2'>
-          <button className='theme-btn px-12 py-2'>
+          <button
+            className='theme-btn px-12 py-2'
+            onClick={onSubmit}
+            disabled={loading}
+          >
             Submit
           </button>
         </div>

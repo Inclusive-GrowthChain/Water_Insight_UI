@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import CreateDao from "../Modals/CreateDao";
 
-function DAO() {
+function DAO({ role = "" }) {
   const { pathname } = useLocation()
   const [open, setOpen] = useState(false)
 
@@ -11,13 +11,16 @@ function DAO() {
   return (
     <section className='dfc h-full overflow-y-hidden'>
       <div className='df gap-4 px-4 py-4'>
-        <h1 className='text-2xl'>
+        <h1 className='mr-auto text-2xl'>
           DAO {pathname === "/dao/my-projects" && <span className="text-base font-medium">(My projects)</span>}
         </h1>
 
-        <Link to="/dao/my-projects" className="ml-auto text-sm hover:text-blue-600">
-          My Projects
-        </Link>
+        {
+          role === "contributor" &&
+          <Link to="/dao/my-projects" className="text-sm hover:text-blue-600">
+            My Projects
+          </Link>
+        }
 
         <button
           className="theme-btn text-sm"
