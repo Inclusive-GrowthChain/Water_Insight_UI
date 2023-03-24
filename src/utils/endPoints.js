@@ -1,5 +1,5 @@
 export const root = {
-  baseUrl: "https://da67-122-186-147-146.in.ngrok.io/api",
+  baseUrl: "https://ccc9-115-99-192-223.in.ngrok.io/api",
 }
 
 const endPoints = {
@@ -18,6 +18,9 @@ const endPoints = {
   createOrder: "/orders/create",
   contributions: "/contributions",
 
+  getSatelite: "/get/satellite",
+  refreshSatelite: "/refresh/satellite",
+
   payContributor: "/admin/payContributor",
   deviveConfig: "/admin/devices",
   computeHash: "/admin/computeHash",
@@ -25,9 +28,8 @@ const endPoints = {
 
   getHash: "/dao/getHash",
   createProject: "/dao/createProject",
+  updateProject: "/dao/updateproject/",
   createStake: "/dao/createStake",
-  // createStake: "/dao/",
-  // createStake: "/dao/",
 }
 
 export default endPoints

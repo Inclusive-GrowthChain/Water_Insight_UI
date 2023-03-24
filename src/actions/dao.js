@@ -1,8 +1,14 @@
 import myContract from '../blockchain.js';
-// enableMetaMask,
 import { errorNotify, successNotify } from '../helper/toastifyHelp';
 import sendApiReq from '../utils/sendApiReq';
 import endPoints from '../utils/endPoints';
+
+export async function getProjects() {
+  return sendApiReq({
+    method: "post",
+    url: "/dao/projects"
+  })
+}
 
 const enableMetaMask = async () => {
   await window.ethereum.request({ method: "eth_requestAccounts" });
@@ -75,28 +81,52 @@ export async function createProject(data, onSuccess, onError) {
 export async function createStake(data, onSuccess, onError) {
   try {
     await enableMetaMask()
-    const stakeProject = await myContract.myContract.methods.Project_StakeMoney(
+    await myContract.myContract.methods.Project_StakeMoney(
       Number(data.stakeAmount), data.projectId
     ).send({ from: window.ethereum.selectedAddress })
-    console.log(stakeProject)
 
-    // const res = await sendApiReq({
-    //   method: "post",
-    //   url: endPoints.createStake,
-    //   data
-    // })
+    await sendApiReq({
+      method: "post",
+      url: endPoints.createStake,
+      data
+    })
 
-    // console.log(res)
-
-    // onSuccess("")
+    successNotify("Amount staked successfully")
+    onSuccess()
   } catch (error) {
     console.log(error)
   }
 }
 
-export async function getProjects(data, onSuccess, onError) {
-  return sendApiReq({
-    method: "post",
-    url: "/dao/projects"
-  })
+export async function vote(data, onSuccess) {
+  try {
+    await enableMetaMask()
+
+    await myContract.myContract.methods.Project_CastVote(
+      data.type, data.id
+    ).send({ from: window.ethereum.selectedAddress })
+
+    let payload = {}
+
+    if (data.type === "0") {
+      payload.againstVotes = data.againstVotes + 1
+    }
+    if (data.type === "1") {
+      payload.forVotes = data.forVotes + 1
+    }
+    if (data.type === "2") {
+      payload.abstainVotes = data.abstainVotes + 1
+    }
+
+    await sendApiReq({
+      method: "post",
+      url: endPoints.updateProject + data.id,
+      data: payload
+    })
+
+    successNotify("Voted successfully")
+    onSuccess()
+  } catch (error) {
+    console.log(error)
+  }
 }

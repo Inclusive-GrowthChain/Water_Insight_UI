@@ -16,6 +16,20 @@ export async function refreshEcoliData() {
   })
 }
 
+export async function getSatelite() {
+  return sendApiReq({
+    url: endPoints.getSatelite,
+    method: "post",
+  })
+}
+
+export async function refreshSatelite() {
+  return sendApiReq({
+    url: endPoints.refreshSatelite,
+    method: "post",
+  })
+}
+
 export async function getDeviceData() {
   return sendApiReq({
     url: endPoints.getDeviceData,

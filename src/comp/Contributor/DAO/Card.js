@@ -9,6 +9,9 @@ function Card({
   id, role, title, summary, fundingTarget,
   minimumStakeAmount: minimumStakingAmount, closeTime: closingTime,
   description, isMine, isClosed,
+  abstainAmount, againstAmount, forAmount,
+  abstainVotes, againstVotes, forVotes,
+  refresh,
 }) {
   const [isStaking, setIsStaking] = useState(false)
   const [active, setActive] = useState(false)
@@ -26,21 +29,25 @@ function Card({
 
   const onSubmitState = () => {
     if (stake) {
-      // setIsStaking(true)
-      const onSuccess = () => setIsStaking(false)
+      setIsStaking(true)
+      const onSuccess = () => {
+        setStake("")
+        setIsStaking(false)
+        refresh()
+      }
 
       window.ethereum.request({ method: 'eth_requestAccounts' })
         .then(res => {
           createStake(
             {
-              walletId: res,
+              walletId: res[0],
               projectId: id,
               stakeAmount: stake
             },
-            onSuccess
+            onSuccess,
+            () => setIsStaking(false)
           )
         })
-
     }
   }
 
@@ -59,7 +66,13 @@ function Card({
 
           {
             !isClosed && !isMine && role !== "admin" &&
-            <VoteBtn id={id} />
+            <VoteBtn
+              id={id}
+              refresh={refresh}
+              abstainVotes={abstainVotes}
+              againstVotes={againstVotes}
+              forVotes={forVotes}
+            />
           }
 
           {
@@ -82,16 +95,16 @@ function Card({
       <div className='df justify-between my-2 text-sm'>
         <div className='df gap-3'>
           <strong className='font-medium'>Votes : </strong>
-          <p className='text-[13px] underline underline-offset-4 decoration-2 decoration-green-500' title='For 12'> &nbsp; 12 &nbsp; </p>
-          <p className='text-[13px] underline underline-offset-4 decoration-2 decoration-red-500' title='Against 12'> &nbsp; 12 &nbsp; </p>
-          <p className='text-[13px] underline underline-offset-4 decoration-2 decoration-yellow-500' title='Abstain 12'> &nbsp; 12 &nbsp; </p>
+          <p className='text-[13px] underline underline-offset-4 decoration-2 decoration-green-500' title='For 12'> &nbsp; {forVotes} &nbsp; </p>
+          <p className='text-[13px] underline underline-offset-4 decoration-2 decoration-red-500' title='Against 12'> &nbsp; {againstVotes} &nbsp; </p>
+          <p className='text-[13px] underline underline-offset-4 decoration-2 decoration-yellow-500' title='Abstain 12'> &nbsp; {abstainVotes} &nbsp; </p>
         </div>
 
         <div className='df gap-3'>
           <strong className='font-medium'>Stakes : </strong>
-          <p className='text-[13px] underline underline-offset-4 decoration-2 decoration-green-500' title='For 12'> &nbsp; 12 &nbsp; </p>
-          <p className='text-[13px] underline underline-offset-4 decoration-2 decoration-red-500' title='Against 12'> &nbsp; 12 &nbsp; </p>
-          <p className='text-[13px] underline underline-offset-4 decoration-2 decoration-yellow-500' title='Abstain 12'> &nbsp; 12 &nbsp; </p>
+          <p className='text-[13px] underline underline-offset-4 decoration-2 decoration-green-500' title='For 12'> &nbsp; {forAmount} &nbsp; </p>
+          <p className='text-[13px] underline underline-offset-4 decoration-2 decoration-red-500' title='Against 12'> &nbsp; {againstAmount} &nbsp; </p>
+          <p className='text-[13px] underline underline-offset-4 decoration-2 decoration-yellow-500' title='Abstain 12'> &nbsp; {abstainAmount} &nbsp; </p>
         </div>
       </div>
 

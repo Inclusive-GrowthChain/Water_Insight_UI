@@ -2,8 +2,13 @@ import { useState, useRef, useMemo } from 'react';
 import { offset, autoUpdate, useFloating, shift, arrow } from '@floating-ui/react-dom-interactions';
 import { ReactComponent as Close } from '../../../assets/svg/common/circle-wrong.svg';
 import { ReactComponent as Thumb } from '../../../assets/svg/common/thumb-up.svg';
+import { vote } from '../../../actions/dao';
 
-function VoteBtn({ id }) {
+function VoteBtn({
+  id, refresh, abstainVotes,
+  againstVotes,
+  forVotes,
+}) {
   const [isOpen, setIsOpen] = useState(false)
   const arrowRef = useRef()
 
@@ -40,8 +45,13 @@ function VoteBtn({ id }) {
     return final
   }, [placement, strategy, x, y, arrowX, arrowY])
 
-  const voteIt = val => {
-    console.log(val)
+  const voteIt = type => {
+    vote({
+      type, id, abstainVotes,
+      againstVotes,
+      forVotes,
+    }, refresh
+    )
     setIsOpen(false)
   }
 
@@ -68,7 +78,7 @@ function VoteBtn({ id }) {
         >
           <button
             className='dfc gap-0 items-center p-0 hover:text-green-500 group'
-            onClick={() => voteIt("For")}
+            onClick={() => voteIt("1")}
           >
             <Thumb className="w-5 h-5 group-hover:fill-green-500" />
             For
@@ -76,7 +86,7 @@ function VoteBtn({ id }) {
 
           <button
             className='dfc gap-0 items-center p-0 hover:text-red-500 group'
-            onClick={() => voteIt("Against")}
+            onClick={() => voteIt("0")}
           >
             <Thumb className="w-5 h-5 group-hover:fill-red-500" style={{ transform: "rotateX(180deg)" }} />
             Against
@@ -84,7 +94,7 @@ function VoteBtn({ id }) {
 
           <button
             className='dfc gap-0 items-center p-0 hover:text-yellow-500 group'
-            onClick={() => voteIt("Abstain")}
+            onClick={() => voteIt("2")}
           >
             <Close className="w-5 h-5 group-hover:fill-yellow-500" />
             Abstain
