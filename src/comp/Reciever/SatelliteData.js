@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getSatelite, refreshSatelite } from '../../actions/general';
 
 import { ReactComponent as Search } from '../../assets/svg/common/search.svg';
+import Loader from '../Common/Loader';
 import Table from './Common/Table';
 import Tabs from '../UIComp/Tabs';
 
@@ -25,7 +26,7 @@ function SatelliteData() {
     }
   })
 
-  console.log(isLoading, data)
+  console.log(isLoading, data.data.satellite_docs)
   return (
     <div className="dfc h-full overflow-hidden">
       <div className="df gap-6 p-4 pb-2">
@@ -62,18 +63,21 @@ function SatelliteData() {
         </div>
       </div>
 
-      <Tabs
-        tabsList={lists}
-        listClass='mx-6'
-        tabClass='pb-2 pt-4'
-        panelClass='scroll-y overflow-x-auto ml-4 my-2'
-        panelChildCls="h-full"
-      >
-        <Table firstCol='lakeName' value='turbidity' />
-        <Table firstCol='lakeName' value='salinity' />
-        <Table firstCol='lakeName' value='ph' />
-        <Table firstCol='lakeName' value='chlorophyll' />
-      </Tabs>
+      {
+        isLoading ? <Loader wrapperCls='scroll-y' /> :
+          <Tabs
+            tabsList={lists}
+            listClass='mx-6'
+            tabClass='pb-2 pt-4'
+            panelClass='scroll-y overflow-x-auto ml-4 my-2'
+            panelChildCls="h-full"
+          >
+            <Table data={data.data.satellite_docs} value='turbidity' />
+            <Table data={data.data.satellite_docs} value='salinity' />
+            <Table data={data.data.satellite_docs} value='pH' />
+            <Table data={data.data.satellite_docs} value='chlorophyll' />
+          </Tabs>
+      }
     </div>
   )
 }

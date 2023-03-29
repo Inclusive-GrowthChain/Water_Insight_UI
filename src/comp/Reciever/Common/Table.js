@@ -1,21 +1,14 @@
 import { IdBtn, StatusBtn } from './Btns';
-import dummy from '../dummy';
+import getRandom from "../../../helper/getRandom";
 
-function Table({ data = dummy, firstCol = "", value = "" }) {
+function Table({ data = [], value = "" }) {
   return (
     <table className='table-fixed w-full'>
       <thead>
         <tr className='sticky top-0 bg-white shadow-sm font-medium text-[#809FB8] border-b'>
           <td className='w-20 px-4 py-2 text-center'>#</td>
-          <td className='w-40 px-4 py-2'>{firstCol === "testName" ? "Test" : "Lake"} name</td>
-          {
-            firstCol !== "lakeName" &&
-            <>
-              <td className='w-28 px-4 py-2'>Type</td>
-              <td className='w-40 px-4 py-2'>Device Id</td>
-            </>
-          }
-          <td className='w-20 px-4 py-2'>Value</td>
+          <td className='w-40 px-4 py-2'>Lake name</td>
+          <td className='w-40 px-4 py-2'>Value</td>
           <td className='w-32 px-4 py-2'>Date</td>
           <td className='w-28 px-4 py-2'>Status</td>
         </tr>
@@ -26,19 +19,12 @@ function Table({ data = dummy, firstCol = "", value = "" }) {
           data.map(d => (
             <tr key={d._id} className="text-sm border-b">
               <td className='px-4 py-2 text-center'>
-                {/* <IdBtn id={d.id} type={d.status} /> */}
+                <IdBtn id={getRandom(100, 999)} type={d?.Status?.[value] || "good"} />
               </td>
-              <td className='px-4 py-2'>{d[firstCol]}</td>
-              {
-                firstCol !== "lakeName" &&
-                <>
-                  <td className='px-4 py-2'>{d.type}</td>
-                  <td className='px-4 py-2'>{d.deviceId}</td>
-                </>
-              }
+              <td className='px-4 py-2'>Hussain Sagar</td>
               <td className='px-4 py-2'>{d[value]}</td>
-              <td className='px-4 py-2'>{d.date}</td>
-              <td className='px-4 py-2'><StatusBtn type={d.status} /></td>
+              <td className='px-4 py-2'>{new Date(d?.endDate).toLocaleDateString()}</td>
+              <td className='px-4 py-2'><StatusBtn type={d?.Status?.[value] || "good"} /></td>
             </tr>
           ))
         }
