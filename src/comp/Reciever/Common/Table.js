@@ -21,7 +21,7 @@ function Table({ data = [], value = "" }) {
               <td className='px-4 py-2 text-center'>
                 <IdBtn id={getRandom(100, 999)} type={d?.Status?.[value] || "good"} />
               </td>
-              <td className='px-4 py-2'>Hussain Sagar</td>
+              <td className='px-4 py-2'>{d.lake}</td>
               <td className='px-4 py-2'>{d[value]}</td>
               <td className='px-4 py-2'>{new Date(d?.endDate).toLocaleDateString()}</td>
               <td className='px-4 py-2'><StatusBtn type={d?.Status?.[value] || "good"} /></td>

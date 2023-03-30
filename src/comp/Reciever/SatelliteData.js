@@ -12,6 +12,7 @@ const deviceList = ["Hussain Sagar", "Osman Sagar", "Durgam Cheruvu"]
 const lists = ["Turbidity", "Salinity", "PH", "Chlorophyll"]
 
 function SatelliteData() {
+  const [refreshLoading, setRefreshLoading] = useState(false)
   const [device, setDevice] = useState("")
   const { isLoading, data, refetch } = useQuery({
     queryKey: ["get-satellites-data"],
@@ -22,11 +23,11 @@ function SatelliteData() {
     queryKey: ["refresh-satellites-data"],
     enabled: false,
     onSuccess: () => {
+      setRefreshLoading(false)
       refetch()
     }
   })
 
-  console.log(isLoading, data.data.satellite_docs)
   return (
     <div className="dfc h-full overflow-hidden">
       <div className="df gap-6 p-4 pb-2">
@@ -35,8 +36,12 @@ function SatelliteData() {
         </h1>
 
         <button
-          className="text-sm bg-[#D9D9D9]"
-          onClick={refresh}
+          className="text-sm bg-[#D9D9D9] disabled:opacity-60"
+          disabled={refreshLoading}
+          onClick={() => {
+            setRefreshLoading(true)
+            refresh()
+          }}
         >
           Refresh
         </button>
