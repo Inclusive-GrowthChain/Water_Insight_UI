@@ -6,7 +6,14 @@ import endPoints from '../utils/endPoints';
 export async function getProjects() {
   return sendApiReq({
     method: "post",
-    url: "/dao/projects"
+    url: endPoints.getDaoProjects
+  })
+}
+
+export async function getMyProjects() {
+  return sendApiReq({
+    method: "post",
+    url: endPoints.getMyDaoProjects
   })
 }
 
@@ -126,6 +133,38 @@ export async function vote(data, onSuccess) {
 
     successNotify("Voted successfully")
     onSuccess()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export async function closeProject(projId, onSuccess, onError) {
+  try {
+    await enableMetaMask()
+
+    const project = await myContract.myContract.methods.closeVoting(
+      projId
+    ).send({ from: window.ethereum.selectedAddress })
+
+    console.log(project)
+    onSuccess()
+
+  } catch (error) {
+    console.log(error)
+    onError()
+  }
+}
+
+export async function unstakeAmt({ id, amt }) {
+  try {
+    await enableMetaMask()
+
+    const unstakeProject = await myContract.methods.Project_UnStakeMoney(
+      amt, id
+    ).send({ from: window.ethereum.selectedAddress })
+
+    console.log(unstakeProject)
+
   } catch (error) {
     console.log(error)
   }

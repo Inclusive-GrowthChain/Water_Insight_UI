@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import CreateDao from "../Modals/CreateDao";
 
-function DAO({ role = "" }) {
+function DAO() {
   const { pathname } = useLocation()
   const [open, setOpen] = useState(false)
 
@@ -16,10 +16,13 @@ function DAO({ role = "" }) {
         </h1>
 
         {
-          role === "contributor" &&
-          <Link to="/dao/my-projects" className="text-sm hover:text-blue-600">
-            My Projects
-          </Link>
+          pathname !== "/dao/my-projects" ?
+            <Link to="/dao/my-projects" className="text-sm hover:text-blue-600">
+              My Projects
+            </Link> :
+            <Link to="/dao" className="text-sm hover:text-blue-600">
+              Go back
+            </Link>
         }
 
         <button

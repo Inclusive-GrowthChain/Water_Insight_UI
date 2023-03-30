@@ -6,7 +6,7 @@ import CloseDao from '../Modals/CloseDao';
 import VoteBtn from './VoteBtn';
 
 function Card({
-  id, role, title, summary, fundingTarget,
+  id, title, summary, fundingTarget,
   minimumStakeAmount: minimumStakingAmount, closeTime: closingTime,
   description, isMine, isClosed,
   abstainAmount, againstAmount, forAmount,
@@ -25,6 +25,7 @@ function Card({
     setActive(p => !p)
   }
 
+  const closeModal = () => setOpen(false)
   const updateOpen = () => setOpen(p => !p)
 
   const onSubmitState = () => {
@@ -65,7 +66,7 @@ function Card({
           }
 
           {
-            !isClosed && !isMine && role !== "admin" &&
+            !isClosed && !isMine &&
             <VoteBtn
               id={id}
               refresh={refresh}
@@ -76,7 +77,7 @@ function Card({
           }
 
           {
-            !isClosed && role === "admin" &&
+            !isClosed &&
             <button
               className="ml-1 p-2 py-1 text-sm text-white bg-red-400 hover:bg-red-500"
               onClick={updateOpen}
@@ -110,7 +111,7 @@ function Card({
 
       <div className='df items-end mt-5'>
         {
-          !isClosed && !isMine && role !== "admin" &&
+          !isClosed && !isMine &&
           <div className='df gap-1'>
             <input
               type="number"
@@ -160,7 +161,8 @@ function Card({
       {
         open &&
         <CloseDao
-          closeModal={updateOpen}
+          id={id}
+          closeModal={closeModal}
         />
       }
     </div>

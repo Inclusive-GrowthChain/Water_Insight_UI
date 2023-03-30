@@ -12,14 +12,13 @@ const setTokenToApp = token => {
 
 export async function signup(data, onSuccess) {
   try {
-    const res = await sendApiReq({
+    await sendApiReq({
       isAuthendicated: false,
       method: 'post',
       url: endPoints.signup,
       data,
     })
 
-    console.log(res)
     onSuccess()
 
   } catch (error) {
@@ -37,7 +36,6 @@ export async function login(data, onSuccess) {
       data,
     })
 
-    console.log(user, token)
     setTokenToApp(token)
     onSuccess({ ...user, token })
 

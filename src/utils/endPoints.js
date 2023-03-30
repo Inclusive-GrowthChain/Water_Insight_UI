@@ -1,5 +1,5 @@
 export const root = {
-  baseUrl: "https://0d25-115-99-192-223.in.ngrok.io/api",
+  baseUrl: "https://a0ea-202-174-120-161.in.ngrok.io/api",
 }
 
 const endPoints = {
@@ -27,6 +27,8 @@ const endPoints = {
   verify: "/admin/verify",
 
   getHash: "/dao/getHash",
+  getDaoProjects: "/dao/projects",
+  getMyDaoProjects: "/dao/myprojects",
   createProject: "/dao/createProject",
   updateProject: "/dao/updateproject/",
   createStake: "/dao/createStake",

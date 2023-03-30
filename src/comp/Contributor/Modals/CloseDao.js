@@ -1,6 +1,15 @@
+import { useState } from 'react';
+import { closeProject } from '../../../actions/dao';
 import Modal from '../../UIComp/Modal';
 
-function CloseDao({ closeModal }) {
+function CloseDao({ id, closeModal }) {
+  const [loading, setLoading] = useState(false)
+
+  const onConfirm = () => {
+    setLoading(true)
+    closeProject(id, closeModal, () => setLoading(false))
+  }
+
   return (
     <Modal
       isOpen
@@ -20,7 +29,11 @@ function CloseDao({ closeModal }) {
           Cancel
         </button>
 
-        <button className='px-12 py-2 text-white bg-red-400 hover:bg-red-500 transition-colors'>
+        <button
+          className='px-12 py-2 text-white bg-red-400 hover:bg-red-500 transition-colors'
+          onClick={onConfirm}
+          disabled={loading}
+        >
           Close
         </button>
       </div>

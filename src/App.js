@@ -58,24 +58,17 @@ function App() {
 
           <Route path='dao' element={<DAO role="contributor" />}>
             <Route index element={<AllProjects role="contributor" />} />
-            <Route path='my-projects' element={<MyProjects />} />
+            <Route path='my-projects' element={<MyProjects role="contributor" />} />
           </Route>
         </Route>
 
-        <Route path='admin' element={
-          // <Admin />
-          <PrivateRoute comp={<Admin />} />
-        }>
+        <Route path='admin' element={<PrivateRoute comp={<Admin />} />}>
           <Route path='device-config' element={<DeviceConfig />} />
           <Route path='make-payments' element={<MakePayments />} />
           <Route path='compute-hash' element={<ComputeHash />} />
           <Route path='verify-data' element={<VerifyData />} />
           <Route path='support' element={<TemplateSupport />} />
           <Route path='setting' element={<TemplateSetting />} />
-
-          <Route path='dao' element={<DAO role="admin" />}>
-            <Route index element={<AllProjects role="admin" />} />
-          </Route>
         </Route>
       </Routes>
     </Suspense>
