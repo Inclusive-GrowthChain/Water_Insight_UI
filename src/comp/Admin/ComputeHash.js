@@ -5,14 +5,14 @@ import { computeHash } from '../../actions/admin';
 function ComputeHash() {
   const [isLoading, setIsLoading] = useState(false)
   const [startDate, setStartDate] = useState(new Date())
+  const [dataType, setDataType] = useState("")
   const [endDate, setEndDate] = useState(null)
-  const [type, setType] = useState("")
 
   const onSuccess = () => {
     setIsLoading(false)
     setStartDate(new Date())
     setEndDate(null)
-    setType("")
+    setDataType("")
   }
 
   const onError = () => setIsLoading(false)
@@ -21,7 +21,7 @@ function ComputeHash() {
     const data = {
       startDate,
       endDate,
-      type,
+      dataType,
     }
     setIsLoading(true)
     computeHash(data, onSuccess, onError)
@@ -43,6 +43,7 @@ function ComputeHash() {
             selected={startDate}
             onChange={setStartDate}
             placeholderText='Select date'
+            dateFormat="dd-MM-yyyy"
           />
         </div>
 
@@ -54,6 +55,7 @@ function ComputeHash() {
             selected={endDate}
             onChange={setEndDate}
             placeholderText='Select date'
+            dateFormat="dd-MM-yyyy"
           />
         </div>
 
@@ -63,12 +65,13 @@ function ComputeHash() {
           <select
             name="data-type"
             id="data-type"
-            value={type}
-            onChange={e => setType(e.target.value)}
+            value={dataType}
+            onChange={e => setDataType(e.target.value)}
           >
             <option value="" disabled>Select type</option>
-            <option value="Val 1">Val 1</option>
-            <option value="Val 2">Val 2</option>
+            <option value="ecoli">E-coli</option>
+            <option value="satellite">Setellite</option>
+            <option value="devicedata">Device</option>
           </select>
         </div>
 

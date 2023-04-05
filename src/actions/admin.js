@@ -1,3 +1,4 @@
+// import myContract from '../blockchain.js';
 import { errorNotify, successNotify } from '../helper/toastifyHelp';
 import sendApiReq from '../utils/sendApiReq';
 import endPoints from '../utils/endPoints';
@@ -23,16 +24,22 @@ export async function payContributor(data, onSuccess, onError) {
 
 export async function computeHash(data, onSuccess, onError) {
   try {
-    const res = await sendApiReq({
+    const { hash, verifyId } = await sendApiReq({
       method: "post",
       url: endPoints.computeHash,
       data
     })
 
-    console.log(res)
+    await enableMetaMask()
 
+    const res = await myContract.myContract.methods
+      .add_datahash(data.dataType, hash, verifyId)
+      .send({ from: window.ethereum.selectedAddress })
+
+    console.log(res)
     successNotify("Computed hash successfully")
     onSuccess()
+
   } catch (error) {
     console.log(error)
     onError()
@@ -42,15 +49,21 @@ export async function computeHash(data, onSuccess, onError) {
 
 export async function verify(data, onSuccess, onError) {
   try {
-    const res = await sendApiReq({
+    const { hash } = await sendApiReq({
       method: "post",
-      url: endPoints.verify,
+      url: endPoints.verify + `/${data.verifyId}`,
       data
     })
 
-    console.log(res)
+    await enableMetaMask()
 
-    successNotify("Order verified successfully")
+    const isVerified = await myContract.myContract.methods
+      .verifyHash(data.verifyId, hash, data.dataType)
+      .call()
+
+    console.log({ isVerified })
+
+    successNotify(isVerified ? "Hash is verified!" : "Hash is not verified!")
     onSuccess()
   } catch (error) {
     console.log(error)

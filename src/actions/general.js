@@ -1,3 +1,5 @@
+import Web3 from "web3";
+import myContract from '../blockchain.js';
 import { errorNotify, successNotify } from '../helper/toastifyHelp';
 import sendApiReq from '../utils/sendApiReq';
 import endPoints from '../utils/endPoints';
@@ -53,11 +55,20 @@ export async function getAllOrders() {
 
 export async function createOrder(data, onSuccess, onError) {
   try {
-    const res = await sendApiReq({
-      method: "post",
-      url: endPoints.createOrder,
-      data
-    })
+    const ownerAddress = "0x4A157b19a4d6037249876196464E3B7c77928f92";
+    // const tokenAddress = "0xabF05e1E4e823281c1d75a67726f73B9D4972e4d"; 
+
+    const amt = Web3.utils.toWei(`${data.amount}`, 'ether')
+
+    const res = await myContract.myContract.methods
+      .transfer(ownerAddress, amt)
+      .send({ from: window.ethereum.selectedAddress });
+
+    // const res = await sendApiReq({
+    //   method: "post",
+    //   url: endPoints.createOrder,
+    //   data
+    // })
 
     console.log(res)
 
@@ -67,6 +78,20 @@ export async function createOrder(data, onSuccess, onError) {
     console.log(error)
     onError()
     errorNotify()
+  }
+}
+
+export async function getPurchaseAmount(data, onSuccess) {
+  try {
+    const res = await sendApiReq({
+      url: endPoints.getPayment,
+      method: "post",
+      data
+    })
+
+    onSuccess(res?.[0]?.count || 0)
+  } catch (error) {
+    console.log(error)
   }
 }
 
@@ -83,19 +108,3 @@ export async function getAllPaymentss() {
     method: "post",
   })
 }
-
-
-// {
-//   "_id": "641164624b242a000b6a906a",
-//   "uniqueMessageId": "18682f690966d3b8",
-//   "Date": "2023-02-24T10:27:21.000Z",
-//   "__v": 0,
-//   "deviceId": "igcatisb@gmail.com",
-//   "fileName": "18682f690966d3b8photo.jpg",
-//   "hash": "59905b98b0862d2e73ad5b374e10208467b86170695ecb4462a53c6609e90b85",
-//   "message": "Photo captured with ESP32-CAM and attached in this email.",
-//   "subject": "ESP32-CAM Photo Captured",
-//   "verifyId": 8195,
-//   "K_mean_RG": 2.607180028192449,
-//   "Turbidity": 10.064256324631863
-// }

@@ -66,7 +66,7 @@ function Card({
           }
 
           {
-            !isClosed && !isMine &&
+            !isClosed &&
             <VoteBtn
               id={id}
               refresh={refresh}
@@ -111,7 +111,7 @@ function Card({
 
       <div className='df items-end mt-5'>
         {
-          !isClosed && !isMine &&
+          !isClosed &&
           <div className='df gap-1'>
             <input
               type="number"

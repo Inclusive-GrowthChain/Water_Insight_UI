@@ -4,7 +4,7 @@ import useAuthStore from '../../../store/auth';
 import Card from "./Card";
 
 function AllProjects({ role }) {
-  const currentUserId = useAuthStore(s => s.userDetails._id)
+  const currentWalletId = useAuthStore(s => s.userDetails.walletId)
   const queryClient = useQueryClient()
   const { isLoading, data } = useQuery({
     queryFn: getProjects,
@@ -21,8 +21,8 @@ function AllProjects({ role }) {
       key={a._id}
       role={role}
       refresh={refresh}
-      isClosed={new Date(a.closeTime).getTime() < new Date().getTime()}
-      isMine={a.userId === currentUserId}
+      isClosed={new Date(a.closeTime).getTime() > new Date().getTime()}
+      isMine={a.walletId === currentWalletId}
     />
   ))
 }

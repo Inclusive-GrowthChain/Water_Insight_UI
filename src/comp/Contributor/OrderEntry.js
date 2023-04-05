@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { createOrder } from "../../actions/general";
+import { useEffect, useState } from "react";
+import { createOrder, getPurchaseAmount } from "../../actions/general";
 import useAuthStore from "../../store/auth";
 import Input from "../Common/Input";
 
@@ -12,8 +12,24 @@ function OrderEntry() {
     startDate: "",
     dataType: "",
     endDate: "",
+    amount: "0",
     email,
   })
+
+  useEffect(() => {
+    if (detail.dataType && detail.startDate && detail.endDate) {
+      getPurchaseAmount(
+        {
+          datatype: detail.dataType,
+          startdate: detail.startDate,
+          enddate: detail.endDate,
+        },
+        (res) => setDetail(p => ({
+          ...p,
+          amount: res * 100
+        })))
+    }
+  }, [detail.dataType, detail.startDate, detail.endDate])
 
   const onChange = (key, val) => {
     setDetail(p => ({
@@ -95,7 +111,7 @@ function OrderEntry() {
 
       <Input
         name="Price"
-        value="5,000"
+        value={detail.amount}
         disabled
       />
 

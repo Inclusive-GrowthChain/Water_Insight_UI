@@ -3,18 +3,20 @@ import { verify } from "../../actions/admin";
 
 function VerifyData() {
   const [isLoading, setIsLoading] = useState(false)
-  const [type, setType] = useState("")
+  const [dataType, setDataType] = useState("")
+  const [verifyId, setVerifyId] = useState("")
 
   const onSuccess = () => {
     setIsLoading(false)
-    setType("")
+    setVerifyId("")
+    setDataType("")
   }
 
   const onError = () => setIsLoading(false)
 
   const onSubmit = () => {
     setIsLoading(true)
-    verify(type, onSuccess, onError)
+    verify({ verifyId, dataType }, onSuccess, onError)
   }
 
   return (
@@ -33,9 +35,25 @@ function VerifyData() {
             id="verifyId"
             type="text"
             placeholder="Verification ID"
-            value={type}
-            onChange={e => setType(e.target.value)}
+            value={verifyId}
+            onChange={e => setVerifyId(e.target.value)}
           />
+        </div>
+
+        <div className='mb-6'>
+          <label htmlFor='data-type' className='mb-0.5 font-medium'>Data type</label>
+
+          <select
+            name="data-type"
+            id="data-type"
+            value={dataType}
+            onChange={e => setDataType(e.target.value)}
+          >
+            <option value="" disabled>Select type</option>
+            <option value="ecoli">E-coli</option>
+            <option value="satellite">Setellite</option>
+            <option value="devicedata">Device</option>
+          </select>
         </div>
 
         <button

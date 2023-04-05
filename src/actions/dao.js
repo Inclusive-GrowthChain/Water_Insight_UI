@@ -147,6 +147,15 @@ export async function closeProject(projId, onSuccess, onError) {
     ).send({ from: window.ethereum.selectedAddress })
 
     console.log(project)
+    // let statusEnums = ["voting", "defeated", "succeeded"]
+    // await sendApiReq({
+    //   method: "post",
+    //   url: endPoints.updateProject + projId,
+    //   data: {
+    //     status
+    //   }
+    // })
+
     onSuccess()
 
   } catch (error) {
