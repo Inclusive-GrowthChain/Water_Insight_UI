@@ -1,5 +1,5 @@
 export const root = {
-  baseUrl: "https://c320-112-133-196-210.in.ngrok.io/api",
+  baseUrl: "https://9db6-112-133-196-210.in.ngrok.io/api",
 }
 
 const endPoints = {

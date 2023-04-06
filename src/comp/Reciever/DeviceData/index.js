@@ -30,7 +30,6 @@ function DeviceData() {
     }
   })
 
-  console.log(data)
   return (
     <div className="dfc h-full overflow-hidden">
       <div className="df gap-6 p-4 pb-2">
@@ -85,8 +84,8 @@ function DeviceData() {
               value='Turbidity'
             />
             <Table
-              data={[]}
-              value='secchiDepth'
+              data={data.data.filter(d => d.Secchi_Depth)}
+              value='Secchi_Depth'
             />
           </Tabs>
       }

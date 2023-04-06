@@ -79,7 +79,7 @@ function OrderEntry() {
           <option value="" disabled></option>
           <option value="ecoli">E-Coli</option>
           <option value="satellite">Satellite</option>
-          <option value="deviceData">Device Data</option>
+          <option value="devicedata">Device Data</option>
         </select>
       </div>
 

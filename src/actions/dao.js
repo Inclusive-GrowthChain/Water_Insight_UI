@@ -17,7 +17,7 @@ export async function getMyProjects() {
   })
 }
 
-const enableMetaMask = async () => {
+export const enableMetaMask = async () => {
   await window.ethereum.request({ method: "eth_requestAccounts" });
 }
 

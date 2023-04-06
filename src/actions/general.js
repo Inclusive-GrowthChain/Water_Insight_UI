@@ -55,20 +55,20 @@ export async function getAllOrders() {
 
 export async function createOrder(data, onSuccess, onError) {
   try {
-    const ownerAddress = "0x4A157b19a4d6037249876196464E3B7c77928f92";
+    // const ownerAddress = "0x4A157b19a4d6037249876196464E3B7c77928f92";
     // const tokenAddress = "0xabF05e1E4e823281c1d75a67726f73B9D4972e4d"; 
 
-    const amt = Web3.utils.toWei(`${data.amount}`, 'ether')
+    // const amt = Web3.utils.toWei(`${data.amount}`, 'ether')
 
-    const res = await myContract.myContract.methods
-      .transfer(ownerAddress, amt)
-      .send({ from: window.ethereum.selectedAddress });
+    // const res = await myContract.myContract.methods
+    //   .transfer(ownerAddress, amt)
+    //   .send({ from: window.ethereum.selectedAddress });
 
-    // const res = await sendApiReq({
-    //   method: "post",
-    //   url: endPoints.createOrder,
-    //   data
-    // })
+    const res = await sendApiReq({
+      method: "post",
+      url: endPoints.createOrder,
+      data
+    })
 
     console.log(res)
 
@@ -89,6 +89,7 @@ export async function getPurchaseAmount(data, onSuccess) {
       data
     })
 
+    console.log(res)
     onSuccess(res?.[0]?.count || 0)
   } catch (error) {
     console.log(error)

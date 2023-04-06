@@ -1,17 +1,16 @@
-// import myContract from '../blockchain.js';
 import { errorNotify, successNotify } from '../helper/toastifyHelp';
+import { enableMetaMask } from './dao.js';
 import sendApiReq from '../utils/sendApiReq';
 import endPoints from '../utils/endPoints';
+import myContract from '../blockchain.js';
 
 export async function payContributor(data, onSuccess, onError) {
   try {
-    const res = await sendApiReq({
+    await sendApiReq({
       method: "post",
       url: endPoints.payContributor,
       data
     })
-
-    console.log(res)
 
     successNotify("Made payment successfully")
     onSuccess()
@@ -32,11 +31,10 @@ export async function computeHash(data, onSuccess, onError) {
 
     await enableMetaMask()
 
-    const res = await myContract.myContract.methods
+    await myContract.myContract.methods
       .add_datahash(data.dataType, hash, verifyId)
       .send({ from: window.ethereum.selectedAddress })
 
-    console.log(res)
     successNotify("Computed hash successfully")
     onSuccess()
 
@@ -61,8 +59,6 @@ export async function verify(data, onSuccess, onError) {
       .verifyHash(data.verifyId, hash, data.dataType)
       .call()
 
-    console.log({ isVerified })
-
     successNotify(isVerified ? "Hash is verified!" : "Hash is not verified!")
     onSuccess()
   } catch (error) {
@@ -74,13 +70,11 @@ export async function verify(data, onSuccess, onError) {
 
 export async function deviceConfig(data, onSuccess, onError) {
   try {
-    const res = await sendApiReq({
+    await sendApiReq({
       method: "post",
       url: endPoints.deviveConfig,
       data
     })
-
-    console.log(res)
 
     successNotify("Device config added successfully")
     onSuccess()
