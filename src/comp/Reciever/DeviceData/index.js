@@ -30,6 +30,7 @@ function DeviceData() {
     }
   })
 
+  console.log(data)
   return (
     <div className="dfc h-full overflow-hidden">
       <div className="df gap-6 p-4 pb-2">

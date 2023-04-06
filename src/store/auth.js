@@ -15,3 +15,7 @@ const useAuthStore = create(devtools((set, get) => ({
 })))
 
 export default useAuthStore
+
+const { setState } = useAuthStore
+
+export { setState }

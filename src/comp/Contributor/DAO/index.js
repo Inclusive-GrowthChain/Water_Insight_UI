@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
+import { enableMetaMask } from "../../../actions/dao";
 import CreateDao from "../Modals/CreateDao";
 
 function DAO() {
   const { pathname } = useLocation()
   const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    if (!window.ethereum.selectedAddress) {
+      enableMetaMask()
+    }
+  }, [])
 
   const updateOpen = () => setOpen(p => !p)
 

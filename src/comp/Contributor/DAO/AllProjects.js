@@ -21,7 +21,6 @@ function AllProjects({ role }) {
       key={a._id}
       role={role}
       refresh={refresh}
-      isClosed={new Date(a.closeTime).getTime() > new Date().getTime()}
       isMine={a.walletId === currentWalletId}
     />
   ))

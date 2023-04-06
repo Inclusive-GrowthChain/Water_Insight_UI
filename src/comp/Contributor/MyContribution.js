@@ -21,7 +21,6 @@ function transform(data) {
     })
   })
 
-  console.log(arr)
   return arr
 }
 
@@ -49,6 +48,7 @@ function MyContribution() {
                   <td className='w-28 p-2'>Date</td>
                   <td className='w-24 p-2'>Time</td>
                   <td className='w-32 p-2'>Type</td>
+                  <td className='w-32 p-2'>Payment</td>
                 </tr>
               </thead>
 
@@ -60,6 +60,7 @@ function MyContribution() {
                       <td className='p-2'>{format(new Date(d.Date), "dd-MM-yy")}</td>
                       <td className='p-2'>{format(new Date(d.Date), "HH:mm aa")}</td>
                       <td className='p-2'>{d.type}</td>
+                      <td className={`p-2 ${d.paymentId ? "text-green-600" : " text-red-600"}`}>{d.paymentId ? "Paid" : "Unpaid"}</td>
                     </tr>
                   ))
                 }

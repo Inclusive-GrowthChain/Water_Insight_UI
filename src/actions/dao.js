@@ -2,6 +2,7 @@ import myContract from '../blockchain.js';
 import { errorNotify, successNotify } from '../helper/toastifyHelp';
 import sendApiReq from '../utils/sendApiReq';
 import endPoints from '../utils/endPoints';
+import { setState } from '../store/auth.js';
 
 export async function getProjects() {
   return sendApiReq({
@@ -19,6 +20,12 @@ export async function getMyProjects() {
 
 export const enableMetaMask = async () => {
   await window.ethereum.request({ method: "eth_requestAccounts" });
+  setState(p => ({
+    userDetails: {
+      ...p.userDetails,
+      walletId: window.ethereum.selectedAddress
+    }
+  }))
 }
 
 export async function createProject(data, onSuccess, onError) {
@@ -109,29 +116,29 @@ export async function vote(data, onSuccess) {
   try {
     await enableMetaMask()
 
-    await myContract.myContract.methods.Project_CastVote(
-      data.type, data.id
-    ).send({ from: window.ethereum.selectedAddress })
+    // await myContract.myContract.methods.Project_CastVote(
+    //   data.type, data.id
+    // ).send({ from: window.ethereum.selectedAddress })
 
-    let payload = {}
+    // let payload = {}
 
-    if (data.type === "0") {
-      payload.againstVotes = data.againstVotes + 1
-    }
-    if (data.type === "1") {
-      payload.forVotes = data.forVotes + 1
-    }
-    if (data.type === "2") {
-      payload.abstainVotes = data.abstainVotes + 1
-    }
+    // if (data.type === "0") {
+    //   payload.againstVotes = data.againstVotes + 1
+    // }
+    // if (data.type === "1") {
+    //   payload.forVotes = data.forVotes + 1
+    // }
+    // if (data.type === "2") {
+    //   payload.abstainVotes = data.abstainVotes + 1
+    // }
 
-    await sendApiReq({
-      method: "post",
-      url: endPoints.updateProject + data.id,
-      data: payload
-    })
+    // await sendApiReq({
+    //   method: "post",
+    //   url: endPoints.updateProject + data.id,
+    //   data: payload
+    // })
 
-    successNotify("Voted successfully")
+    // successNotify("Voted successfully")
     onSuccess()
   } catch (error) {
     console.log(error)

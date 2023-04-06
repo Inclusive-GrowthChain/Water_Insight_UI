@@ -1,5 +1,5 @@
-import Web3 from "web3";
-import myContract from '../blockchain.js';
+// import Web3 from "web3";
+// import myContract from '../blockchain.js';
 import { errorNotify, successNotify } from '../helper/toastifyHelp';
 import sendApiReq from '../utils/sendApiReq';
 import endPoints from '../utils/endPoints';

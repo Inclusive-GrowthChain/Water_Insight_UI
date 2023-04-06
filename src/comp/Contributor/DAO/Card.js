@@ -1,4 +1,6 @@
 import { useRef, useState } from 'react';
+import { format } from 'date-fns';
+
 import { createStake } from '../../../actions/dao';
 import { ReactComponent as Arrow } from '../../../assets/svg/arrows/dropdown.svg';
 import { ReactComponent as Clock } from '../../../assets/svg/common/clock.svg';
@@ -8,7 +10,7 @@ import VoteBtn from './VoteBtn';
 function Card({
   id, title, summary, fundingTarget,
   minimumStakeAmount: minimumStakingAmount, closeTime: closingTime,
-  description, isMine, isClosed,
+  description, isMine, status,
   abstainAmount, againstAmount, forAmount,
   abstainVotes, againstVotes, forVotes,
   refresh,
@@ -56,17 +58,17 @@ function Card({
     <div className='p-6 max-w-xl mx-auto mb-4 border shadow rounded-lg hover:shadow-intensed cursor-pointer'>
       <div className="df">
         <div className='font-semibold'>{title}</div>
-        <div className="df gap-1 ml-auto text-sm">
+        <div className="df gap-1 ml-auto text-sm capitalize">
           {
-            isClosed ? "Succeed" :
+            status !== "voting" ? status :
               <>
                 <Clock className="w-4 h-4 stroke-slate-900" />
-                {new Date(closingTime).toLocaleString()}
+                {closingTime && format(new Date(closingTime), "dd-MM-yyyy")}
               </>
           }
 
           {
-            !isClosed &&
+            status === "voting" && !isMine &&
             <VoteBtn
               id={id}
               refresh={refresh}
@@ -77,7 +79,8 @@ function Card({
           }
 
           {
-            !isClosed &&
+            status === "voting" && isMine &&
+            new Date(closingTime).getTime() > new Date().getTime() &&
             <button
               className="ml-1 p-2 py-1 text-sm text-white bg-red-400 hover:bg-red-500"
               onClick={updateOpen}
@@ -111,7 +114,7 @@ function Card({
 
       <div className='df items-end mt-5'>
         {
-          !isClosed &&
+          status === "voting" && !isMine &&
           <div className='df gap-1'>
             <input
               type="number"
