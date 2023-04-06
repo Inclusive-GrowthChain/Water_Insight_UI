@@ -1,5 +1,5 @@
-// import Web3 from "web3";
-// import myContract from '../blockchain.js';
+import Web3 from "web3";
+import myContract from '../blockchain.js';
 import { errorNotify, successNotify } from '../helper/toastifyHelp';
 import sendApiReq from '../utils/sendApiReq';
 import endPoints from '../utils/endPoints';
@@ -55,15 +55,6 @@ export async function getAllOrders() {
 
 export async function createOrder(data, onSuccess, onError) {
   try {
-    // const ownerAddress = "0x4A157b19a4d6037249876196464E3B7c77928f92";
-    // const tokenAddress = "0xabF05e1E4e823281c1d75a67726f73B9D4972e4d"; 
-
-    // const amt = Web3.utils.toWei(`${data.amount}`, 'ether')
-
-    // const res = await myContract.myContract.methods
-    //   .transfer(ownerAddress, amt)
-    //   .send({ from: window.ethereum.selectedAddress });
-
     const res = await sendApiReq({
       method: "post",
       url: endPoints.createOrder,
@@ -71,6 +62,37 @@ export async function createOrder(data, onSuccess, onError) {
     })
 
     console.log(res)
+
+    const ownerAddress = "0x4A157b19a4d6037249876196464E3B7c77928f92";
+    const amt = Web3.utils.toWei(`${data.amount}`, 'ether')
+
+    try {
+      await myContract.myContract.methods
+        .transfer(ownerAddress, amt)
+        .send({ from: window.ethereum.selectedAddress });
+
+      await sendApiReq({
+        method: "post",
+        url: endPoints.updateOrderStatus + `/${res.orderId}`,
+        data: {
+          orderStatus: "paid"
+        }
+      })
+
+    } catch (error) {
+      await sendApiReq({
+        method: "post",
+        url: endPoints.updateOrderStatus + `/${res.orderId}`,
+        data: {
+          orderStatus: "unpaid"
+        }
+      })
+    }
+
+    await sendApiReq({
+      method: "post",
+      url: endPoints.sendEmail + `/${res.orderId}`,
+    })
 
     successNotify("Order placed successfully")
     onSuccess()

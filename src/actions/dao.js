@@ -116,29 +116,29 @@ export async function vote(data, onSuccess) {
   try {
     await enableMetaMask()
 
-    // await myContract.myContract.methods.Project_CastVote(
-    //   data.type, data.id
-    // ).send({ from: window.ethereum.selectedAddress })
+    await myContract.myContract.methods.Project_CastVote(
+      data.type, data.id
+    ).send({ from: window.ethereum.selectedAddress })
 
-    // let payload = {}
+    let payload = {}
 
-    // if (data.type === "0") {
-    //   payload.againstVotes = data.againstVotes + 1
-    // }
-    // if (data.type === "1") {
-    //   payload.forVotes = data.forVotes + 1
-    // }
-    // if (data.type === "2") {
-    //   payload.abstainVotes = data.abstainVotes + 1
-    // }
+    if (data.type === "0") {
+      payload.againstVotes = data.againstVotes + 1
+    }
+    if (data.type === "1") {
+      payload.forVotes = data.forVotes + 1
+    }
+    if (data.type === "2") {
+      payload.abstainVotes = data.abstainVotes + 1
+    }
 
-    // await sendApiReq({
-    //   method: "post",
-    //   url: endPoints.updateProject + data.id,
-    //   data: payload
-    // })
+    await sendApiReq({
+      method: "post",
+      url: endPoints.updateProject + data.id,
+      data: payload
+    })
 
-    // successNotify("Voted successfully")
+    successNotify("Voted successfully")
     onSuccess()
   } catch (error) {
     console.log(error)
