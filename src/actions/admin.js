@@ -23,19 +23,24 @@ export async function payContributor(data, onSuccess, onError) {
 
 export async function computeHash(data, onSuccess, onError) {
   try {
-    const { hash, verifyId } = await sendApiReq({
+    const res = await sendApiReq({
       method: "post",
       url: endPoints.computeHash,
       data
     })
 
-    await enableMetaMask()
+    if (res.message) {
+      successNotify("No Pending Records Found to hash in this period of time")
+    } else {
+      await enableMetaMask()
 
-    await myContract.myContract.methods
-      .add_datahash(data.dataType, hash, verifyId)
-      .send({ from: window.ethereum.selectedAddress })
+      await myContract.myContract.methods
+        .add_datahash(data.dataType, res.hash, res.verifyId)
+        .send({ from: window.ethereum.selectedAddress })
 
-    successNotify("Computed hash successfully")
+      successNotify("Computed hash successfully")
+    }
+
     onSuccess()
 
   } catch (error) {
