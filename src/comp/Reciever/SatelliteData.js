@@ -9,7 +9,7 @@ import Tabs from '../UIComp/Tabs';
 
 const deviceList = ["Hussain Sagar", "Osman Sagar", "Durgam Cheruvu"]
 
-const lists = ["Turbidity", "Salinity", "PH", "Chlorophyll"]
+const lists = ["Turbidity", "Salinity", "PH", "Chlorophyll", "DO", "Water Index", "Suspended Matter"]
 
 function SatelliteData() {
   const [refreshLoading, setRefreshLoading] = useState(false)
@@ -81,6 +81,9 @@ function SatelliteData() {
             <Table data={data.data.satellite_docs} value='salinity' />
             <Table data={data.data.satellite_docs} value='pH' />
             <Table data={data.data.satellite_docs} value='chlorophyll' />
+            <Table data={data.data.satellite_docs} value='dissolveoxygen' />
+            <Table data={data.data.satellite_docs} value='waterindex' />
+            <Table data={data.data.satellite_docs} value='suspendedMatter' />
           </Tabs>
       }
     </div>
