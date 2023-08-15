@@ -11,7 +11,7 @@ import Tabs from '../../UIComp/Tabs';
 
 const deviceList = ["Hussain Sagar", "Osman Sagar", "Durgam Cheruvu"]
 
-const lists = ["Kd", "Turbidity", "Secchi Depth"]
+const lists = [  "K_mean_RG","CDOM","SD","TSM","Turb","cdom_ratio"]
 
 function DeviceData() {
   const email = useAuthStore(st => st.userDetails.email)
@@ -81,12 +81,24 @@ function DeviceData() {
               value='K_mean_RG'
             />
             <Table
-              data={data.data.filter(d => d.Turbidity)}
-              value='Turbidity'
+              data={data.data.filter(d => d.CDOM)}
+              value='CDOM'
             />
             <Table
-              data={data.data.filter(d => d.Secchi_Depth)}
-              value='Secchi_Depth'
+              data={data.data.filter(d => d.SD)}
+              value='SD'
+            />
+            <Table
+              data={data.data.filter(d => d.TSM)}
+              value='TSM'
+            />
+            <Table
+              data={data.data.filter(d => d.Turb)}
+              value='Turb'
+            />
+            <Table
+              data={data.data.filter(d => d.cdom_ratio)}
+              value='cdom_ratio'
             />
           </Tabs>
       }
