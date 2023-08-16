@@ -53,16 +53,24 @@ function MyContribution() {
               </thead>
 
               <tbody>
-                {
-                  final.map(d => (
-                    <tr key={d._id} className='text-sm even:bg-slate-100'>
-                      <td className='p-2 pl-4'>{d._id}</td>
-                      <td className='p-2'>{format(new Date(d.Date), "dd-MM-yy")}</td>
-                      <td className='p-2'>{format(new Date(d.Date), "HH:mm aa")}</td>
-                      <td className='p-2'>{d.type}</td>
-                      <td className={`p-2 ${d.paymentId ? "text-green-600" : " text-red-600"}`}>{d.paymentId ? "Paid" : "Unpaid"}</td>
-                    </tr>
-                  ))
+              {
+                  final.map(d => {
+                    let dateTime = d?.Date?.split(',')
+                    return (
+                      <tr key={d._id} className='text-sm even:bg-slate-100'>
+                        <td className='p-2 pl-4'>{d._id}</td>
+                        {/* <td className='p-2'>{format(new Date(d.Date), "dd-MM-yy")}</td> */}
+                        {/* <td className='p-2'>{format(new Date(d.Date), "HH:mm aa")}</td> */}
+                        {/* <td className='p-2'>{format(new Date(d.Date), "HH:mm aa")}</td> */}
+                        <td className='p-2'>{dateTime[0]}</td>
+                        <td className='p-2'>{dateTime[1]}</td>
+                        <td className='p-2'>{d.type}</td>
+                        <td className={`p-2 ${d.paymentId ? "text-green-600" : " text-red-600"}`}>{d.paymentId ? "Paid" : "Unpaid"}</td>
+                      </tr>
+                    )
+
+
+                  })
                 }
               </tbody>
             </table>

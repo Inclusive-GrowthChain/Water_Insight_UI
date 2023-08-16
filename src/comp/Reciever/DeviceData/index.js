@@ -62,7 +62,7 @@ function DeviceData() {
             onChange={e => setDevice(e.target.value)}
           >
             <option value="" disabled>Name</option>
-            {deviceList.map(l => <option key={l} value={l}>{l}</option>)}
+            {deviceList?.map(l => <option key={l} value={l}>{l}</option>)}
           </select>
         </div>
       </div>
@@ -77,27 +77,27 @@ function DeviceData() {
             panelChildCls="h-full"
           >
             <Table
-              data={data.data.filter(d => d.K_mean_RG)}
+              data={data?.data.filter(d => d.K_mean_RG)}
               value='K_mean_RG'
             />
             <Table
-              data={data.data.filter(d => d.CDOM)}
+              data={data?.data.filter(d => d.CDOM)}
               value='CDOM'
             />
             <Table
-              data={data.data.filter(d => d.SD)}
+              data={data?.data.filter(d => d.SD)}
               value='SD'
             />
             <Table
-              data={data.data.filter(d => d.TSM)}
+              data={data?.data.filter(d => d.TSM)}
               value='TSM'
             />
             <Table
-              data={data.data.filter(d => d.Turb)}
+              data={data?.data.filter(d => d.Turb)}
               value='Turb'
             />
             <Table
-              data={data.data.filter(d => d.cdom_ratio)}
+              data={data?.data.filter(d => d.cdom_ratio)}
               value='cdom_ratio'
             />
           </Tabs>

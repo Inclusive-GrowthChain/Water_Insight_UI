@@ -13,7 +13,7 @@ const endPoints = {
   refreshEcoli: "/ecolidata/refresh",
   getEcoliData: "/ecolidata/results",
   refreshDeviceData: "/devicedata/refresh/", // {email}
-  getDeviceData: "/devicedata/results",
+  getDeviceData: "/devicedata/getresults",
   getAllOrders: "/orders/orders",
   createOrder: "/orders/create",
   updateOrderStatus: "/orders/updatestatus",
