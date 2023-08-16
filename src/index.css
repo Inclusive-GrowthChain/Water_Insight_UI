@@ -203,6 +203,41 @@
   }
 }
 
+
+/* root constants */
+:root {
+  --toastify-icon-color-success: #5DC90A;
+  --toastify-text-color-light: #6C6D6D;  
+  --toastify-toast-min-height: 34px;
+  --toastify-toast-width: 100vw;
+}
+
+
+/* Toastify Confiuration */
+.Toastify__toast {
+  @apply w-fit px-1 py-2 rounded-full;
+  margin: 0 auto .8rem;
+  font-size: 14px;
+}
+
+.Toastify__toast-icon {
+  margin-inline-end: 6px;
+}
+
+.Toastify__toast-icon svg {
+  height: 18px;
+  width: 18px;
+}
+
+.Toastify__toast-body {
+  padding: 0 6px;
+}
+
+.Toastify__close-button {
+  display: none;
+}
+
+
 .auth-bg {
   background: url(./assets/img/img2.jpg) no-repeat center/cover;
   filter: grayscale(.3);

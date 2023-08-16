@@ -1,12 +1,32 @@
 import { useState } from 'react';
-import SelectBox from './Common/SelectBox';
+import { deviceConfig } from '../../actions/admin';
+import SelectBox from '../Reciever/Common/SelectBox';
 
 const list = ["Freshwater Lake", "Sewer", "Household", "Industrial water", "Other"]
 function DeviceConfig() {
   const [testingAreaType, setTestingAreaType] = useState("Other")
+  const [isLoading, setIsLoading] = useState("")
   const [deviceId, setDeviceId] = useState("")
   const [country, setCountry] = useState("")
   const [state, setState] = useState("")
+  const [email, setEmail] = useState("")
+
+  const onSubmit = () => {
+    if (deviceId && country && state && email) {
+      setIsLoading(true)
+      deviceConfig(
+        {
+          testingAreaType,
+          deviceId,
+          country,
+          state,
+          email,
+        },
+        () => setIsLoading(false),
+        () => setIsLoading(false),
+      )
+    }
+  }
 
   return (
     <div className="dfc h-full overflow-hidden">
@@ -32,6 +52,16 @@ function DeviceConfig() {
           />
         </div>
 
+        <div className='mb-3'>
+          <label className='mb-0.5 font-medium' htmlFor="Email">Email</label>
+          <input
+            id='Email'
+            type="text"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+        </div>
+
         <SelectBox
           name='Country'
           value={country}
@@ -50,7 +80,12 @@ function DeviceConfig() {
           onChange={setTestingAreaType}
           optionsList={list}
         />
-        <button className=' theme-btn'>
+
+        <button
+          className='theme-btn col-start-1'
+          disabled={isLoading}
+          onClick={onSubmit}
+        >
           Save
         </button>
       </div>
