@@ -26,8 +26,8 @@ function Table({ data, value = "" }) {
               <td className='px-4 py-2'>Hussain Sagar</td>
               <td className='px-4 py-2'>Lake</td>
               <td className='px-4 py-2'>{d.deviceId}</td>
-              <td className='px-4 py-2'>{d[value]}</td>
-              <td className='px-4 py-2'>{format(new Date(d.Date), "dd-MM-yy")}</td>
+              <td className='px-4 py-2'>{Number(d[value]).toFixed(3)}</td>
+              <td className='px-4 py-2'>{d.Date}</td>
               <td className='px-4 py-2'>
                 <StatusBtn type={i % 3 === 0 ? "Warning" : i % 2 === 0 ? "Normal" : "Danger"} />
               </td>

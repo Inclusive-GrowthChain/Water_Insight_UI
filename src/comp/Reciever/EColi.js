@@ -89,8 +89,8 @@ function EColi() {
                       <td className='px-4 py-2'>Hussain Sagar</td>
                       <td className='px-4 py-2'>Lake</td>
                       <td className='px-4 py-2'>{d?.id}</td>
-                      <td className='px-4 py-2'>{d?.StartedValue}</td>
-                      <td className='px-4 py-2'>{d?.EndedValue}</td>
+                      <td className='px-4 py-2'>{Number(d?.StartedValue).toFixed(2)}</td>
+                      <td className='px-4 py-2'>{Number(d?.EndedValue).toFixed(2)}</td>
                       <td className='px-4 py-2'>{d?.percentage}</td>
                       <td className='px-4 py-2'>{new Date(d?.Date).toLocaleDateString()}</td>
                       <td className='px-4 py-2'>
