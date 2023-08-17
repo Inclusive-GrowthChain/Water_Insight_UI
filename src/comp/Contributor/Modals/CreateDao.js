@@ -1,13 +1,13 @@
-import { useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
-import { createProject } from '../../../actions/dao';
-import { errorNotify } from '../../../helper/toastifyHelp';
-import Input from '../../Common/Input';
-import Modal from '../../UIComp/Modal';
+import { useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
+import { createProject } from "../../../actions/dao";
+import { errorNotify } from "../../../helper/toastifyHelp";
+import Input from "../../Common/Input";
+import Modal from "../../UIComp/Modal";
 
 function CreateDao({ closeModal }) {
-  const queryClient = useQueryClient()
-  const [loading, setLoading] = useState(false)
+  const queryClient = useQueryClient();
+  const [loading, setLoading] = useState(false);
   const [details, setDetails] = useState({
     title: "",
     summary: "",
@@ -16,16 +16,22 @@ function CreateDao({ closeModal }) {
     minimumStakingAmount: "",
     votingThreshold: "",
     closingTime: "",
-  })
+  });
 
   const onChange = (key, val) => {
-    setDetails(p => ({
+    setDetails((p) => ({
       ...p,
-      [key]: val
-    }))
-  }
+      [key]: val,
+    }));
+  };
 
   const onSubmit = async () => {
+    if (
+      typeof window !== "undefined" &&
+      typeof window.ethereum == "undefined"
+    ) {
+      return errorNotify("Metamask extension is not install");
+    }
     if (
       !details.title ||
       !details.summary ||
@@ -35,64 +41,60 @@ function CreateDao({ closeModal }) {
       !details.votingThreshold ||
       !details.closingTime
     ) {
-      return errorNotify("All fields are required.")
+      return errorNotify("All fields are required.");
     }
 
-    setLoading(true)
+    setLoading(true);
     const onSuccess = () => {
-      queryClient.invalidateQueries(["projects"])
-      setLoading(false)
-      closeModal()
-    }
+      queryClient.invalidateQueries(["projects"]);
+      setLoading(false);
+      closeModal();
+    };
 
-    createProject(details, onSuccess, () => setLoading(false))
-  }
+    createProject(details, onSuccess, () => setLoading(false));
+  };
 
   return (
-    <Modal
-      isOpen
-      title='Create DAO Project'
-      closeModal={closeModal}
-    >
-      <div className='grid grid-cols-2 gap-6'>
+    <Modal isOpen title="Create DAO Project" closeModal={closeModal}>
+      <div className="grid grid-cols-2 gap-6">
         <Input
-          name='Title'
+          name="Title"
           value={details["title"]}
-          onChange={val => onChange("title", val)}
+          onChange={(val) => onChange("title", val)}
         />
 
         <Input
-          name='Funding Target'
+          name="Funding Target"
           value={details["fundingTarget"]}
-          onChange={val => onChange("fundingTarget", val)}
+          onChange={(val) => onChange("fundingTarget", val)}
         />
 
         <Input
-          name='Minimum Staking Amount'
+          name="Minimum Staking Amount"
           value={details["minimumStakingAmount"]}
-          onChange={val => onChange("minimumStakingAmount", val)}
+          onChange={(val) => onChange("minimumStakingAmount", val)}
         />
 
         <Input
-          name='Voting Threshold'
+          name="Voting Threshold"
           value={details["votingThreshold"]}
-          onChange={val => onChange("votingThreshold", val)}
+          onChange={(val) => onChange("votingThreshold", val)}
         />
 
         <Input
-          name='Summary'
+          name="Summary"
           value={details["summary"]}
-          onChange={val => onChange("summary", val)}
+          onChange={(val) => onChange("summary", val)}
         />
 
         <Input
-          name='Closing Time'
-          type='date'
+          name="Closing Time"
+          type="date"
           value={details["closingTime"]}
-          onChange={val => onChange("closingTime", val)}
+          onChange={(val) => onChange("closingTime", val)}
         />
 
-        <div className='col-span-2'>
+        <div className="col-span-2">
           <label className="mb-1 text-gray-700" htmlFor="Description">
             Description
           </label>
@@ -100,14 +102,14 @@ function CreateDao({ closeModal }) {
             id="Description"
             name="Description"
             value={details["description"]}
-            onChange={e => onChange("description", e.target.value)}
+            onChange={(e) => onChange("description", e.target.value)}
             className="h-20 max-h-40"
           ></textarea>
         </div>
 
-        <div className='dc col-span-2'>
+        <div className="dc col-span-2">
           <button
-            className='theme-btn px-12 py-2'
+            className="theme-btn px-12 py-2"
             onClick={onSubmit}
             disabled={loading}
           >
@@ -116,7 +118,7 @@ function CreateDao({ closeModal }) {
         </div>
       </div>
     </Modal>
-  )
+  );
 }
 
-export default CreateDao
+export default CreateDao;
