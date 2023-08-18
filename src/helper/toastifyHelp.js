@@ -9,7 +9,7 @@ export const successNotify = (msg, position = "") => {
 };
 
 export const errorNotify = (
-  msg = "Something went wrong, try again later1",
+  msg = "Something went wrong, try again later",
   position = ""
 ) => {
   toast.error(msg, {
