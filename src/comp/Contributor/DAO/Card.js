@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
 import { format } from "date-fns";
-
 import { createStake } from "../../../actions/dao";
 import { ReactComponent as Arrow } from "../../../assets/svg/arrows/dropdown.svg";
 import { ReactComponent as Clock } from "../../../assets/svg/common/clock.svg";
 import CloseDao from "../Modals/CloseDao";
 import VoteBtn from "./VoteBtn";
+import { errorNotify } from "../../../helper/toastifyHelp";
 
 function Card({
   id,
@@ -41,6 +41,12 @@ function Card({
   const updateOpen = () => setOpen((p) => !p);
 
   const onSubmitState = () => {
+     if (
+      typeof window !== "undefined" &&
+      typeof window.ethereum == "undefined"
+    ) {
+      return errorNotify("Metamask extension is not install");
+    }
     if (stake) {
       setIsStaking(true);
       const onSuccess = () => {
